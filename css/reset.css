@@ -1,0 +1,47 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+body {
+    position: relative;
+    min-height: 100vh; /* Fallback if svh is not supported */
+    min-height: 100svh; /* svh takes into consideration the URL-bar on mobile devices */
+}
+
+input, textarea, button, select {
+    font: inherit;
+}
+
+/* html {
+    color-scheme: dark light;
+} */ 
+
+picture, svg, video {
+    display: block;
+    max-width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle; 
+    font-style: italic; /* If src is not found, the alt text will stand out more */
+    background-repeat: no-repeat; 
+    background-size: cover; /* For slower connections, use a low res image as a placeholder */
+    shape-margin: 0.75rem; /* Sets a margin around floating images */
+}
+
+a {
+    text-decoration: none; /* Remove link-style */
+    color: #fff;
+}
+
+li, ul {
+    list-style: none;
+}
