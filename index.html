@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HvL - Feed</title>
+    <script type="module" src="js/components/nav/nav.mjs"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/pages/home.css">
 </head>
+
 <body>
-    
+    <header>
+        <nav-bar><img class="nav-logo" src="assets/images/logo.png" alt="Logo"> 
+        </nav-bar>
+    </header>
+    <main>
+        <div class="carousel"></div>
+        <div class="filters">
+            <ul>
+                <li>All posts</li>
+                <li>Artificial Intelligence</li>
+                <li>Cryptography</li>
+                <li>Machine Learning</li>
+                <li>Cyber Security</li>
+                <li>
+                    <select name="sortby" id="sortby">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="search-container">
+                <div class="search-bar">
+                    <div>icon</div>
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <section id="posts">
+            <h1 class="blog-feed">All posts</h1>
+            <div class="thumbnails-container">
+                <div class="thumbnail">
+                    <img src="" alt="">
+                    <div class="thumbnail-text">
+                        <p>type</p>
+                        <p>Title</p>
+                        <div class="thumbnail-creator">
+                            <p>Creator</p>
+                            <p>Date</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>

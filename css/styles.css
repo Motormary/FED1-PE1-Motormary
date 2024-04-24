@@ -1,0 +1,50 @@
+@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Public+Sans:wght@500&display=swap');
+
+:root {
+    --blog-feed: 2.5rem;
+    --border: #667766;
+    --text-secondary: #676767;
+    --text-primary: #000;
+    --button-primary: #000D4F;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+p .description {
+    font-size: 0.75rem;
+}
+
+p .feed {
+    font-size: 1.125rem;
+}
+
+body {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-optical-sizing: auto;
+}
+
+header {
+    position: relative;
+}
+
+main {
+    padding-top: 5rem;
+}
+
+
+* * * * * * { outline: solid 1px rgba(255, 0, 0, 0.171); }
+
