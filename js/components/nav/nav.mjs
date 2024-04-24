@@ -1,10 +1,13 @@
 import { contentStyle, navStyle } from "./styles.mjs"
-const authList = `
+
+const authedNav = `
 <li><a href="/">Blog</a></li>
-<li class="dropdown"><img src="" alt="">
+<li class="dropdown" tabIndex="0"><img src="../assets/images/alt.png" alt="">
   <div class="dropdown-content">
-    <a href="/post/edit.html">Edit Post</a>
+    <span>administrator@hvl.com</span>
     <a href="/post/index.html">New Post</a>
+    <a href="/post/edit.html">Edit Post</a>
+    <button class="logout" onclick="logout()">Log out</button>
   </div>
 </li>
 `
@@ -16,7 +19,7 @@ template.innerHTML = `
 <nav class="nav-content">
     <div class="logo-container">
       <a title="Home" href="/">
-        <slot></slot>
+        <img class="nav-logo" src="../assets/images/logo.png" alt="Logo">
         <p>HvL</p>
       </a>
     </div>
@@ -36,6 +39,7 @@ class CustomNav extends HTMLElement {
 
     this.shadowRoot.append(templateStyle, template.content.cloneNode(true))
 
+
     this.updateCartLength()
 
     window.addEventListener("updateCart", this.updateCartLength.bind(this))
@@ -45,8 +49,7 @@ class CustomNav extends HTMLElement {
     const navLinks = this.shadowRoot.querySelector("ul")
     console.log("connected")
 
-    navLinks.innerHTML = authList
-    
+    navLinks.innerHTML = authedNav
   }
 
   updateCartLength() {

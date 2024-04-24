@@ -10,9 +10,29 @@ export const contentStyle = `
   align-items: center;
   justify-content: space-between;
 }
+
+.logo-container a {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container p {
+    font-family: "Caveat", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 2rem;
+    margin: 0;
+    color: #333;
+}
+
+.nav-logo {
+    max-height: 41px;
+    margin-right: 0.5rem;
+}
+
 a {
   text-decoration: none;
-  color: #000;
+  color: #676767;
   font-size: 0.875rem;
 }
 
@@ -20,6 +40,7 @@ a {
     padding: 0.5rem;
     border: solid 1px #6767;
     border-radius: 6px;
+    color: #333;
 }
 
 .nav-content > li, ul {
@@ -30,45 +51,68 @@ a {
     padding: 0;
 }
 
-logo-container {
-    padding-inline: 0.125rem;
-}
-
-.logo-container p {
-    font-weight: bold;
-    display: inline;
-    text-wrap: nowrap;
-}
-
 .dropdown {
     display: inline-block;
     position: relative;
     height: 2.5rem; 
+    width: 2.5rem;
+}
+
+.dropdown:focus {
+    outline: none;
+}
+
+.dropdown img {
+    height: 2.5rem;
     width: 2.5rem; 
     border-radius: 50%; 
-    background-color: #333;
 }
+
 
 .dropdown-content {
-    // display: none;
+    visibility: hidden;
     position: absolute;
     right: 0;
-    top: 35px;
+    top: 40px;
     background-color: #fff;
-    padding: 0.5rem;
-    min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    min-width: 140px;
+    border-radius: 6px;
+    border: 1px solid #6767;
+    overflow: hidden;
     z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.dropdown-content a {
+.dropdown-content > button {
+    width: 100%;
+    background-color: inherit;
+    outline: none;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+}
+
+.dropdown-content > * {
     display: block;
+    font-size: 0.75rem;
+    color: #333;
     border-bottom: solid 1px #6767;
-    padding: 0.125rem 0;
+    padding: 0.5rem;
+    user-select: none;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown-content > *:hover:not(:first-child),
+.dropdown-content > *:focus-visible:not(:first-child) {
+    outline: none;
+    background-color: #67676715;
+    cursor: pointer;
 }
 
 @media (max-width: 530px) {
@@ -93,4 +137,5 @@ width: 100%;
 z-index: 50; 
 background-color: #fff;
 border-bottom: solid 1px #6767;
+box-shadow: 1px 1px 1px 1px #67676715
 `
