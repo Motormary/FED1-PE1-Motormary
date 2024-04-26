@@ -102,12 +102,14 @@ a {
     user-select: none;
 }
 
+/* Open dropdown when hovered / focused with tab */
 .dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content {
     visibility: visible;
     opacity: 1;
 }
 
+/* Make dropdown menu "tabbable" (except logged in username) + color selection */
 .dropdown-content > *:hover:not(:first-child),
 .dropdown-content > *:focus-visible:not(:first-child) {
     outline: none;

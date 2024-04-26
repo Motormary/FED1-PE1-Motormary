@@ -16,18 +16,20 @@ const template = document.createElement("template")
 const templateStyle = document.createElement("style")
 templateStyle.innerHTML = contentStyle
 template.innerHTML = `
-<nav class="nav-content">
+<div class="nav-content">
     <div class="logo-container">
       <a title="Home" href="/">
         <img class="nav-logo" src="../assets/images/logo.png" alt="Logo">
         <p>HvL</p>
       </a>
     </div>
-    <ul>
-      <li><a href="/">Blog</a></li>
-      <li><a class="login-link" href="/login.html">Login</a></li>
-    </ul>
-  </nav>
+    <nav>    
+      <ul>
+        <li><a href="/">Blog</a></li>
+        <li><a class="login-link" href="/login.html">Login</a></li>
+      </ul>
+    </nav>
+  </div>
 `
 class CustomNav extends HTMLElement {
   constructor() {
