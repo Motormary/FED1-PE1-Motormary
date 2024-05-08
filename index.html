@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="css/pages/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/abcb7b9301.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/index.mjs"></script>
 </head>
 
 <body>
@@ -23,8 +26,25 @@
             }
         </script>
     </header>
-    <main>
-        <div class="carousel"></div>
+    <main class="container">
+        <div class="carousel">
+            <div class="carousel-images">
+                <a class="banner" id="banner1" href="/"><img src="assets/images/b1.png" alt="banner 1"></a>
+                <a class="banner" id="banner2" href="/"><img src="assets/images/b2.png" alt="banner 2"></a>
+                <a class="banner" id="banner3" href="/"><img src="assets/images/b3.png" alt="banner 3"></a>
+            </div>
+            <div class="banner-controls">
+                <button class="prev">
+                    <i class="fa-solid fa-chevron-left fa-xs"></i>
+                </button>
+                <i class="fa-solid fa-circle fa-xs banner-dot"></i>
+                <i class="fa-solid fa-circle fa-xs banner-dot"></i>
+                <i class="fa-solid fa-circle fa-xs banner-dot"></i>
+                <button class="next">
+                    <i class="fa-solid fa-chevron-right fa-xs"></i>
+                </button>
+            </div>
+        </div>
         <div class="filters">
             <ul>
                 <li>All posts</li>

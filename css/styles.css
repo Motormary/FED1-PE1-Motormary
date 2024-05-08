@@ -7,6 +7,7 @@
     --text-secondary: #676767;
     --text-primary: #000;
     --button-primary: #000D4F;
+    --max-width: 1400px;
 }
 
 h1 {
@@ -45,6 +46,11 @@ main {
     padding-top: 5rem;
 }
 
+.container {
+    width: min(90%, var(--max-width));
+    margin: auto;
+}
 
-* * * * * * { outline: solid 1px rgba(255, 0, 0, 0.171); }
+
+ * { outline: solid 1px rgba(255, 0, 0, 0.171); }
 

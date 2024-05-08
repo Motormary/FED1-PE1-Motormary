@@ -1,3 +1,43 @@
 @import url("../styles.css");
 
 
+.carousel {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carousel-images {
+    display: flex;
+    height: 10rem;
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+}
+
+.carousel-images a {
+    min-width: 1200px;
+    width: 100%;
+}
+
+.banner-controls {
+    margin: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.prev,
+.next {
+    padding: 0 0.5rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.banner-dot {
+    user-select: none;
+}
