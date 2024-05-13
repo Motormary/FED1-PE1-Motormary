@@ -12,8 +12,8 @@ class customFooter extends HTMLElement {
     this.attachShadow({ mode: "open" })
 
     this.style = `
-    width: 100%;
     position: absolute;
+    width: 100%;
     bottom: 0;
     border-top: 1px solid #6767;
     text-align: center;

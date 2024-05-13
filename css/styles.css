@@ -1,56 +1,73 @@
 @import url("reset.css");
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Public+Sans:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Public+Sans:wght@500&display=swap");
 
 :root {
-    --blog-feed: 2.5rem;
-    --border: #667766;
-    --text-secondary: #676767;
-    --text-primary: #000;
-    --button-primary: #000D4F;
-    --max-width: 1400px;
+  --blog-feed: 2.5rem;
+  --secondary: #667766;
+  --text-secondary: #676767;
+  --text-primary: #000;
+  --button-primary: #000d4f;
+  --max-width: 1400px;
+  --filter-gap: 1rem;
+  --border: lightgray;
 }
 
 h1 {
-    font-size: 3rem;
-    font-weight: bold;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 h2 {
-    font-size: 2rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 p .description {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 p .feed {
-    font-size: 1.125rem;
+  font-size: 1.125rem;
 }
 
 body {
-    font-family: "Inter", "Roboto", sans-serif;
-    font-optical-sizing: auto;
+  font-family: "Inter", "Roboto", sans-serif;
 }
 
 header {
-    position: relative;
+  position: relative;
 }
 
 main {
-    padding-top: 5rem;
+  padding-top: 5rem;
 }
 
 .container {
-    width: min(90%, var(--max-width));
-    margin: auto;
+  width: min(90%, var(--max-width));
+  margin: auto;
+}
+
+.border {
+  border: solid red 1px;
+}
+
+select {
+  background-color: transparent;
+  border: solid 1px lightgray;
+  border-radius: 6px;
+  padding: 0.25rem;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
 }
 
 
- * { outline: solid 1px rgba(255, 0, 0, 0.171); }
-
+/* * { outline: solid 1px rgba(255, 0, 0, 0.171); } */

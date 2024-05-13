@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HvL - Feed</title>
-    <script type="module" src="js/components/nav/nav.mjs"></script>
-    <script type="module" src="js/components/footer/footer.mjs"></script>
-    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="css/pages/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&display=swap"
         rel="stylesheet">
+    <script type="module" src="js/components/nav/nav.mjs"></script>
     <script src="https://kit.fontawesome.com/abcb7b9301.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/components/footer/footer.mjs"></script>
     <script type="module" src="js/index.mjs"></script>
 </head>
 
@@ -47,13 +46,14 @@
         </div>
         <div class="filters">
             <ul>
-                <li>All posts</li>
-                <li>Artificial Intelligence</li>
-                <li>Cryptography</li>
-                <li>Machine Learning</li>
-                <li>Cyber Security</li>
+                <li><a href="/">All posts</a></li>
+                <li><a href="?tag=ai">Artificial Intelligence</a></li>
+                <li><a href="?tag=crypto">Cryptography</a></li>
+                <li><a href="?tag=ml">Machine Learning</a></li>
+                <li><a href="?tag=cs">Cyber Security</a></li>
                 <li>
-                    <select name="sortby" id="sortby">
+                    <select class="filter-select" name="sortby" id="sortby">
+                        <option selected hidden>Sort by</option>
                         <option value="newest">Newest</option>
                         <option value="oldest">Oldest</option>
                     </select>
@@ -61,25 +61,94 @@
             </ul>
             <div class="search-container">
                 <div class="search-bar">
-                    <div>icon</div>
-                    <input type="text">
+                    <i class="fa-solid fa-magnifying-glass search-icon fa-xs"></i>
+                    <input placeholder="Search..." type="text">
                 </div>
             </div>
         </div>
         <section id="posts">
             <h1 class="blog-feed">All posts</h1>
             <div class="thumbnails-container">
-                <div class="thumbnail">
-                    <img src="" alt="">
+                <div href="/" class="thumbnail">
+                    <a href="/">
+                        <img src="assets/images/b1.png" alt="">
+                    </a>
                     <div class="thumbnail-text">
-                        <p>type</p>
-                        <p>Title</p>
+                        <span>Machine Learning</span>
+                        <a href="/">
+                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
+                        </a>
                         <div class="thumbnail-creator">
-                            <p>Creator</p>
+                            <a href="/" class="creator">
+                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
+                                <p>Creator</p>
+                            </a>
                             <p>Date</p>
                         </div>
                     </div>
                 </div>
+                <div href="/" class="thumbnail">
+                    <a href="/">
+                        <img src="assets/images/b1.png" alt="">
+                    </a>
+                    <div class="thumbnail-text">
+                        <span>Machine Learning</span>
+                        <a href="/">
+                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
+                        </a>
+                        <div class="thumbnail-creator">
+                            <a href="/" class="creator">
+                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
+                                <p>Creator</p>
+                            </a>
+                            <p>Date</p>
+                        </div>
+                    </div>
+                </div>
+                <div href="/" class="thumbnail">
+                    <a href="/">
+                        <img src="assets/images/b1.png" alt="">
+                    </a>
+                    <div class="thumbnail-text">
+                        <span>Machine Learning</span>
+                        <a href="/">
+                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
+                        </a>
+                        <div class="thumbnail-creator">
+                            <a href="/" class="creator">
+                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
+                                <p>Creator</p>
+                            </a>
+                            <p>Date</p>
+                        </div>
+                    </div>
+                </div>
+                <div href="/" class="thumbnail">
+                    <a href="/">
+                        <img src="assets/images/b1.png" alt="">
+                    </a>
+                    <div class="thumbnail-text">
+                        <span>Machine Learning</span>
+                        <a href="/">
+                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
+                        </a>
+                        <div class="thumbnail-creator">
+                            <a href="/" class="creator">
+                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
+                                <p>Creator</p>
+                            </a>
+                            <p>Date</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+                <span>First Page</span>
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+                <span>Last Page</span>
             </div>
         </section>
     </main>

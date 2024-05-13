@@ -12,6 +12,7 @@ body {
     position: relative;
     min-height: 100vh; /* Fallback if svh is not supported */
     min-height: 100svh; /* svh takes into consideration the URL-bar on mobile devices */
+    padding-bottom: 2.5rem;
 }
 
 input, textarea, button, select {
