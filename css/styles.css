@@ -27,11 +27,12 @@ h3 {
   font-weight: bold;
 }
 
-p .description {
+.description {
   font-size: 0.75rem;
+  color: var(--text-secondary);
 }
 
-p .feed {
+.feed {
   font-size: 1.125rem;
 }
 

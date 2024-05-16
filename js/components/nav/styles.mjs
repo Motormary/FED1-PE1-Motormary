@@ -117,6 +117,10 @@ a {
     cursor: pointer;
 }
 
+.dropdown-content span {
+    color: #676767
+}
+
 @media (max-width: 530px) {
     .logo-container p {
         display: none;
