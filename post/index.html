@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/abcb7b9301.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/pages/post.css">
     <script type="module" src="../js/components/nav/nav.mjs"></script>
@@ -19,29 +19,45 @@
 <body>
     <header>
         <nav-bar></nav-bar>
-        <script>
-            function logout() {
-                console.log("clicked")
-            }
-        </script>
     </header>
     <main class="container">
-        <section id="post">
-            <p class="description">type - date</p>
-            <h1>Title</h1>
-            <h3 class="post-sum">Lorem ipsum pipsum krandum sipsum ipsum pipsum krandum sipsum</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <img src="" alt="small banner">
-        </section>
-        <section id="creator">
-            <p class="description">Creator</p>
-            <div class="creator-box">
-                <img src="../assets/images/alt.png" alt="avatar">
-                <p>Name</p>
-                <p class="description">Manager</p>
+        <div class="banner">
+            <img src="../assets/images/b2.png" alt="">
+        </div>
+        <section id="post" class="post-container">
+            <div class="post-header">
+                <p class="description">type - date</p>
+                <h1>Title</h1>
             </div>
-            <div class="more-posts">
-                <p class="description">Other posts from this author</p>
+            <div class="post-text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+            <div class="author-container">
+                <p class="description">Author</p>
+                <div class="author-info">
+                    <img src="../assets/images/alt.png" alt="avatar">
+                    <div>
+                        <p class="author-name">Firstname Lastname</p>
+                        <p class="description">Manager</p>
+                    </div>
+                </div>
+                <div class="other-posts">
+                    <p class="description">Other posts from this author</p>
+                    <div class="more-container">
+
+                    </div>
+                </div>
             </div>
         </section>
     </main>

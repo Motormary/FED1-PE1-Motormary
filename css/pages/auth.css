@@ -1,0 +1,97 @@
+@import url("/css/styles.css");
+
+main {
+  position: relative;
+}
+
+.auth-container {
+  max-width: 465px;
+  margin: 2rem auto;
+  border: 1px solid;
+  border-radius: 6px;
+  border-color: var(--border);
+  padding: 1.75rem;
+  box-shadow: 0 0 5px var(--border);
+  opacity: 0;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-name: fade;
+}
+
+.auth-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.auth-header img {
+  max-height: 4rem;
+  max-width: 4rem;
+}
+
+.auth-container form > div {
+  margin: 1.5rem 0;
+}
+
+.auth-container form textarea {
+  resize: vertical;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+#save-auth {
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: var(--button-primary);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.auth-btn:hover,
+.auth-btn:focus {
+  background-color: var(--primary-hover);
+}
+
+.auth-info {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.auth-info a {
+  color: var(--button-primary);
+  font-weight: 500;
+}
+
+.password-error,
+.user-error {
+  color: red;
+}
+
+@keyframes fade {
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HvL - Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/abcb7b9301.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/pages/auth.css">
+    <script type="module" src="/js/components/nav/nav.mjs"></script>
+    <script type="module" src="/js/components/footer/footer.mjs"></script>
+    <script async src="/js/pages/login.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav-bar></nav-bar>
+    </header>
+    <main class="container">
+        <div class="auth-container">
+            <div class="auth-header">
+                <img src="../assets/images/logo.png" alt="logo">
+                <p>Sign In</p>
+            </div>
+            <form action="" method="post">
+                <div class="input-container"><label for="username">Username</label><input type="text" name="username"><span class="user-error"></span></div>
+                <div class="input-container"><label for="password">Password</label><input minlength="6" type="password"><span class="password-error"></span></div>
+                <div class="checkbox-container">
+                    <label for="save-auth">Keep me signed in</label>
+                    <input type="checkbox" name="save-auth" id="save-auth">
+                </div>
+                <button class="auth-btn" type="submit">Sign In</button>
+            </form>
+            <div class="auth-info">
+                <p>Don't have an account? <a href="/account/Register.html">Sign Up</a></p>
+                
+            </div>
+        </div>
+    </main>
+    <hvl-footer></hvl-footer>
+</body>
+
+</html>

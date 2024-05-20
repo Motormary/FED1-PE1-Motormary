@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HvL - Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/abcb7b9301.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/pages/edit.css">
+    <script type="module" src="../js/components/nav/nav.mjs"></script>
+    <script type="module" src="../js/components/footer/footer.mjs"></script>
+</head>
+
+<body>
+    <header>
+        <nav-bar></nav-bar>
+    </header>
+    <main class="container edit">
+        <h1>New Post</h1>
+        <form action="" method="get" class="editor-container">
+            <div class="input-container">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="input-container">
+
+                <label for="body">Body</label>
+                <textarea name="body" id="body" rows="20"></textarea>
+
+            </div>
+            <div class="edit-bottom">
+                <div class="input-container">
+
+                    <label for="media">Media URL</label>
+                    <input type="text" name="media" id="media">
+
+                </div>
+                <div class="input-container tags">
+
+                    <label for="tags" class="tags-label">Tags
+                        <span class="info-icon">
+                            <i class="fa-solid fa-info"></i>
+                            <div class="info-text">
+                                <p>Separate each tag with a comma</p>
+                            </div>
+                        </span>
+                    </label>
+                        <input type="text" name="tags" id="tags">
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="submit-post" type="submit">Submit</button>
+            </div>
+        </form>
+    </main>
+    <hvl-footer></hvl-footer>
+</body>
+
+</html>
