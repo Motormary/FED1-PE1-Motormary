@@ -66,6 +66,7 @@ a {
     height: 2.5rem;
     width: 2.5rem; 
     border-radius: 50%; 
+    cursor: pointer;
 }
 
 
@@ -103,7 +104,6 @@ a {
 }
 
 /* Open dropdown when hovered / focused with tab */
-.dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content {
     visibility: visible;
     opacity: 1;

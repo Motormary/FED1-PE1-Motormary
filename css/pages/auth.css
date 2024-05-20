@@ -13,7 +13,7 @@ main {
   padding: 1.75rem;
   box-shadow: 0 0 5px var(--border);
   opacity: 0;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-name: fade;
 }
