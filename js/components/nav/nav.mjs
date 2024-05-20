@@ -1,3 +1,4 @@
+import { checkAuth } from "../../auth.mjs"
 import { contentStyle, navStyle } from "./styles.mjs"
 
 const authedNav = `
@@ -10,6 +11,11 @@ const authedNav = `
     <button class="logout" onclick="logout()">Log out</button>
   </div>
 </li>
+`
+
+const nonAuth = `
+<li><a href="/">Blog</a></li>
+<li><a class="login-link" href="/account/login.html">Login</a></li>
 `
 
 const template = document.createElement("template")
@@ -25,8 +31,7 @@ template.innerHTML = `
     </div>
     <nav>    
       <ul>
-        <li><a href="/">Blog</a></li>
-        <li><a class="login-link" href="/login.html">Login</a></li>
+
       </ul>
     </nav>
   </div>
@@ -49,9 +54,12 @@ class CustomNav extends HTMLElement {
 
   connectedCallback() {
     const navLinks = this.shadowRoot.querySelector("ul")
-    console.log("connected")
 
-    navLinks.innerHTML = authedNav
+    const isAuthed = checkAuth()
+
+    if (isAuthed) navLinks.innerHTML = authedNav
+    else navLinks.innerHTML = nonAuth
+    
   }
 
   updateCartLength() {
