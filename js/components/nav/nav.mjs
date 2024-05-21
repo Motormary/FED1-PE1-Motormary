@@ -1,22 +1,6 @@
 import { checkAuth } from "../../auth.mjs"
+import createAuthedNav from "./create-auth-nav.mjs"
 import { contentStyle, navStyle } from "./styles.mjs"
-
-const authedNav = `
-<li><a href="/">Blog</a></li>
-<li class="dropdown" tabIndex="0"><img src="../assets/images/alt.png" alt="">
-  <div class="dropdown-content">
-    <span>administrator@hvl.com</span>
-    <a href="/post/index.html">New Post</a>
-    <a href="/post/edit.html">Edit Post</a>
-    <button class="logout" onclick="logout()">Log out</button>
-  </div>
-</li>
-`
-
-const nonAuth = `
-<li><a href="/">Blog</a></li>
-<li><a class="login-link" href="/account/login.html">Login</a></li>
-`
 
 const template = document.createElement("template")
 const templateStyle = document.createElement("style")
@@ -31,11 +15,13 @@ template.innerHTML = `
     </div>
     <nav>    
       <ul>
-
+      <li><a href="/">Blog</a></li>
+      <li><a class="login-link" href="/account/login.html">Login</a></li>
       </ul>
     </nav>
   </div>
 `
+
 class CustomNav extends HTMLElement {
   constructor() {
     super()
@@ -45,7 +31,6 @@ class CustomNav extends HTMLElement {
     this.style = navStyle
 
     this.shadowRoot.append(templateStyle, template.content.cloneNode(true))
-
 
     this.updateCartLength()
 
@@ -57,9 +42,8 @@ class CustomNav extends HTMLElement {
 
     const isAuthed = checkAuth()
 
-    if (isAuthed) navLinks.innerHTML = authedNav
-    else navLinks.innerHTML = nonAuth
-    
+    if (isAuthed) createAuthedNav(navLinks)
+
   }
 
   updateCartLength() {

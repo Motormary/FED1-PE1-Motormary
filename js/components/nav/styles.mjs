@@ -109,7 +109,7 @@ a {
     opacity: 1;
 }
 
-/* Make dropdown menu "tabbable" (except logged in username) + color selection */
+/* Make dropdown menu accessible (except logged in username) + color selection */
 .dropdown-content > *:hover:not(:first-child),
 .dropdown-content > *:focus-visible:not(:first-child) {
     outline: none;

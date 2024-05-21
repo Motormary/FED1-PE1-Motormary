@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/pages/auth.css">
     <script type="module" src="../js/components/nav/nav.mjs"></script>
     <script type="module" src="../js/components/footer/footer.mjs"></script>
+    <script type="module" src="/js/pages/register.mjs"></script>
 </head>
 
 <body>
@@ -25,21 +26,27 @@
                 <img src="../assets/images/logo.png" alt="logo">
                 <p>Sign Up</p>
             </div>
-            <form action="" method="post">
-                <div class="input-container"><label for="username">Username</label><input type="text" name="username"></div>
-                <div class="input-container"><label for="email">Email</label><input type="email" name="email"></div>
-                <div class="input-container"><label for="password">Password</label><input minlength="6" type="password"></div>
-                <div class="input-container"><label for="confirm">Confirm Password</label><input minlength="6" type="password"><span class="password-error"></span></div>
-                <div class="input-container"><label for="bio">Bio</label><textarea name="bio" id="bio" rows="3"></textarea></div>
-                <div class="input-container"><label for="avatar">Avatar URL</label><input type="url"></div>
-                <div class="input-container"><label for="banner">Banner URL</label><input type="url"></div>
+            <form id="registerForm" method="post">
+                <div class="input-container"><label for="name">Username</label><input type="text" name="name" required>
+                </div>
+                <div class="input-container"><label for="email">Email</label><input type="email" name="email" required></div>
+                <div class="input-container"><label for="password">Password</label><input minlength="8" type="password" name="password" required>
+                </div>
+                <div class="input-container"><label for="confirm">Confirm Password</label><input minlength="8"
+                        type="password" required><span class="password-error"></span></div>
+                <div class="input-container"><label for="bio">Bio</label><textarea name="bio" id="bio"
+                        rows="3" name="bio" maxlength="160"></textarea></div>
+                <div class="input-container"><label for="avatar.url">Avatar URL</label><input type="url" name="avatar.url"></div>
+                <div class="input-container"><label for="banner">Banner URL</label><input type="url" name="banner.url"></div>
+                <input type="hidden" name="venueManager" value="true">
                 <button class="auth-btn" type="submit">Sign Up</button>
             </form>
             <div class="auth-info">
                 <p>Already have an account? <a href="/account/login.html">Log in</a></p>
-                
+
             </div>
         </div>
+        <div id="toast">This is an Error</div>
     </main>
     <hvl-footer></hvl-footer>
 </body>

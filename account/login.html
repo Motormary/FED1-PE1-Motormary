@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/pages/auth.css">
     <script type="module" src="/js/components/nav/nav.mjs"></script>
     <script type="module" src="/js/components/footer/footer.mjs"></script>
-    <script async src="/js/pages/login.js"></script>
+    <script type="module" src="/js/pages/login.mjs"></script>
 </head>
 
 <body>
@@ -26,9 +26,9 @@
                 <img src="../assets/images/logo.png" alt="logo">
                 <p>Sign In</p>
             </div>
-            <form action="" method="post">
-                <div class="input-container"><label for="username">Username</label><input type="text" name="username"><span class="user-error"></span></div>
-                <div class="input-container"><label for="password">Password</label><input minlength="6" type="password"><span class="password-error"></span></div>
+            <form id="loginForm" method="post">
+                <div class="input-container"><label class="inputfield" for="username">Email</label><input type="email" name="email" required><span class="email-error"></span></div>
+                <div class="input-container"><label class="inputfield" for="password">Password</label><input minlength="8" type="password" name="password" required><span class="password-error"></span></div>
                 <div class="checkbox-container">
                     <label for="save-auth">Keep me signed in</label>
                     <input type="checkbox" name="save-auth" id="save-auth">
@@ -40,6 +40,7 @@
                 
             </div>
         </div>
+        <div id="toast">This is an Error</div>
     </main>
     <hvl-footer></hvl-footer>
 </body>
