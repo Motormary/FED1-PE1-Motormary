@@ -1,28 +1,24 @@
 import { showToast } from "../components/toast.mjs"
+import formatRegData from "../functions/format-registration-data.mjs"
+import handleErrors from "../functions/handle-input-errors.mjs"
+import removeErrors from "../functions/remove-errors.mjs"
+import validatePassword from "../functions/validate-password.mjs"
 import { REGISTER_URL } from "../urls.mjs"
-const registerForm = document.querySelector("form#registerForm")
 
+const registerForm = document.querySelector("form#registerForm")
 registerForm.addEventListener("submit", registerUser)
 
 async function registerUser(event) {
   event.preventDefault()
+  removeErrors() // If errors - remove them.
+
   const formData = new FormData(event.target)
-  const formObject = Object.fromEntries(formData.entries())
 
-  if (formData.get("avatar.url")) {
-    formObject.avatar = {
-      url: formData.get("avatar.url"),
-      alt: formData.get("avatar.alt") || "avatar",
-    }
-  }
-  if (formData.get("banner.url")) {
-    formObject.banner = {
-      url: formData.get("banner.url"),
-      alt: formData.get("banner.alt") || "banner",
-    }
-  }
+  const isPasswordValid = validatePassword(formData) // Validate "confirm password" field.
 
-  formObject.venueManager = formData.has("venueManager")
+  if (!isPasswordValid) return
+
+  const formObject = formatRegData(formData) // Format nested data: {}
 
   try {
     const response = await fetch(REGISTER_URL, {
@@ -37,12 +33,16 @@ async function registerUser(event) {
       window.location.href = "/account/login.html"
     } else {
       const data = await response.json()
-      console.log(data)
-      showToast(data.errors[0].message)
+      if (data.errors.length && data.errors[0]?.path) {
+        handleErrors(data) // If the error has a path the label will be set to red with the error message displayed beneath the input.
+      } else {
+        showToast(data.errors[0].message) // If no path, display error in a toast.
+      }
     }
-
   } catch (e) {
     showToast("Something went wrong, try again or contact support.")
     console.error(e)
   }
 }
+
+

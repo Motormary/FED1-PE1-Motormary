@@ -27,26 +27,45 @@
                 <p>Sign Up</p>
             </div>
             <form id="registerForm" method="post">
-                <div class="input-container"><label for="name">Username</label><input type="text" name="name" required>
+                <div class="input-container">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" required>
+                    <span id="reg_name_error" class="error-message"></span>
                 </div>
-                <div class="input-container"><label for="email">Email</label><input type="email" name="email" required></div>
-                <div class="input-container"><label for="password">Password</label><input minlength="8" type="password" name="password" required>
+                <div class="input-container">
+                    <label id="reg_email_label" for="email">Email</label>
+                    <input type="email" name="email" required>
+                    <span id="reg_email_error" class="error-message"></span>
                 </div>
-                <div class="input-container"><label for="confirm">Confirm Password</label><input minlength="8"
-                        type="password" required><span class="password-error"></span></div>
-                <div class="input-container"><label for="bio">Bio</label><textarea name="bio" id="bio"
-                        rows="3" name="bio" maxlength="160"></textarea></div>
-                <div class="input-container"><label for="avatar.url">Avatar URL</label><input type="url" name="avatar.url"></div>
-                <div class="input-container"><label for="banner">Banner URL</label><input type="url" name="banner.url"></div>
+                <div class="input-container">
+                    <label for="password">Password</label>
+                    <input minlength="8" type="password" name="password" required>
+                </div>
+                <div class="input-container">
+                    <label id="reg_pw_label" for="confirm">Confirm Password</label>
+                    <input minlength="8" type="password" name="confirm" required>
+                    <span id="reg_pw_error" class="error-message"></span>
+                </div>
+                <div class="input-container">
+                    <label for="bio">Bio</label>
+                    <textarea name="bio" id="bio" rows="3" name="bio" maxlength="160"></textarea>
+                </div>
+                <div class="input-container">
+                    <label id="reg_avatar_label" for="avatar.url">Avatar URL</label>
+                    <input type="url" name="avatar.url">
+                </div>
+                <div class="input-container">
+                    <label for="banner">Banner URL</label>
+                    <input type="url" name="banner.url">
+                </div>
                 <input type="hidden" name="venueManager" value="true">
                 <button class="auth-btn" type="submit">Sign Up</button>
             </form>
             <div class="auth-info">
                 <p>Already have an account? <a href="/account/login.html">Log in</a></p>
-
             </div>
         </div>
-        <div id="toast">This is an Error</div>
+        <div id="toast"></div>
     </main>
     <hvl-footer></hvl-footer>
 </body>

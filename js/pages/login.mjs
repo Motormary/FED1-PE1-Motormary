@@ -2,11 +2,14 @@ import { showToast } from "../components/toast.mjs"
 import { LOGIN_URL } from "../urls.mjs"
 
 const loginForm = document.querySelector("form#loginForm")
+const inputfields = document.querySelectorAll(".inputfield")
 
 loginForm.addEventListener("submit", loginUser)
 
 async function loginUser(event) {
   event.preventDefault()
+  inputfields.forEach(error => error.classList.remove("error"))
+
   const formData = new FormData(event.target)
   const formObject = Object.fromEntries(formData.entries())
 
@@ -23,6 +26,7 @@ async function loginUser(event) {
       const responseData = await response.json()
       const data = responseData.data
       const accessToken = data.accessToken
+
       if (formData.has("save-auth")) {
         localStorage.auth = accessToken
         localStorage.email = data.email
@@ -31,9 +35,9 @@ async function loginUser(event) {
         sessionStorage.email = data.email
       }
       window.location.href = "/"
-      loginForm.classList.remove("error")
+      
     } else {
-      loginForm.classList.add("error")
+      inputfields.forEach(field => field.classList.add("error"))
       const errorData = await response.json()
       showToast(errorData.errors[0].message)
     }

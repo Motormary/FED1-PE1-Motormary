@@ -90,12 +90,18 @@ main {
   color: red;
 }
 
+.error,
+.error-message {
+  color: red;
+}
+
+input[type="checkbox"] {
+  color: black;
+}
+
 @keyframes fade {
     100% {
         opacity: 1;
     }
 }
 
-.error * .inputfield {
-  color: red;
-}

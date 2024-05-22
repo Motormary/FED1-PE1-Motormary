@@ -9,5 +9,5 @@ export function checkAuth() {
 export function logout() {
   localStorage.clear("auth")
   sessionStorage.clear("auth")
-  window.location.reload()
+  window.location.href = "/"
 }
