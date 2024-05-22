@@ -23,7 +23,7 @@ export default function createAuthedNav(navList) {
     userMail.textContent = localStorage.email || sessionStorage.email || "Logged in"
   
     const postLink = document.createElement("a")
-    postLink.href = "/post/index.html"
+    postLink.href = "/post/create.html"
     postLink.textContent = "New Post"
   
     const editLink = document.createElement("a")
