@@ -4,10 +4,6 @@ main {
   overflow: hidden;
 }
 
-#editPost {
-  display: none;
-}
-
 .edit h1 {
   font-size: 2.5rem;
   margin-top: 2rem;

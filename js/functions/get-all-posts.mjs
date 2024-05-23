@@ -15,8 +15,6 @@ export async function getAllPosts(author, page, limit) {
     )
 
     const responseData = await response.json()
-    console.log(response)
-    console.log(responseData)
 
     if (response.ok) {
       const data = responseData

@@ -131,10 +131,8 @@ textarea:focus {
 }
 
 #loading-spinner {
-  position: absolute;
   max-width: 100px;
-  top: calc(50% - 50px);
-  left: calc(50% - 50px);
+  margin: auto;
   animation: loading 5s infinite linear;
 }
 

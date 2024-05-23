@@ -28,7 +28,7 @@ export default function createAuthedNav(navList) {
     postLink.textContent = "New Post"
   
     const editLink = document.createElement("a")
-    editLink.href = "/post/edit.html"
+    editLink.href = "/post/list.html"
     editLink.textContent = "Edit Post"
   
     const logoutBtn = document.createElement("button")

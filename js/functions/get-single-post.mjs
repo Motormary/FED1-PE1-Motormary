@@ -5,13 +5,13 @@ export default async function getSinglePost(author, postId) {
   try {
     const response = await fetch(`${POSTS_URL}${author}/${postId}`, {
       method: "GET",
+      cache: "no-store"
     })
 
     const responseData = await response.json()
     if (response.ok) {
       return responseData
     } else {
-      console.log(responseData)
       return response.status
     }
   } catch (e) {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HvL - Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Lobster&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/abcb7b9301.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/pages/edit.css">
+    <script type="module" src="/js/components/nav/nav.mjs"></script>
+    <script type="module" src="/js/components/footer/footer.mjs"></script>
+    <script type="module" src="/js/pages/list.mjs"></script>
+</head>
+
+<body>
+    <header>
+        <nav-bar></nav-bar>
+    </header>
+    <main class="container edit">
+        <h1>All posts</h1>
+        <div class="edit-search">
+            <input type="search" placeholder="Filter posts">
+        </div>
+        <div class="all-posts-container">
+            <img id="loading-spinner" src="/assets/images/spinner.svg" alt="loading...">
+        </div>
+        <div id="toast"></div>
+    </main>
+    <hvl-footer></hvl-footer>
+</body>
+
+</html>
