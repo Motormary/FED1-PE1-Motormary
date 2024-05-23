@@ -1,5 +1,13 @@
 @import url("../styles.css");
 
+main {
+  overflow: hidden;
+}
+
+#editPost {
+  display: none;
+}
+
 .edit h1 {
   font-size: 2.5rem;
   margin-top: 2rem;
@@ -8,7 +16,11 @@
 .editor-container {
   display: grid;
   gap: 1.5rem;
-  margin: 2rem 0;
+  margin: 2rem 0.25rem;
+}
+
+.edit-back {
+  justify-self: left;
 }
 
 .edit-bottom {
@@ -17,7 +29,7 @@
   gap: 1.5rem;
 }
 
-.tags-label {
+.icon-label {
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -43,46 +55,148 @@
 
 .info-text {
   display: none;
-}
-
-.info-icon:hover .info-text {
-  display: block;
   position: absolute;
   bottom: 1.25rem;
   left: 0.5rem;
-  width: 13rem;
+  width: max-content;
   padding: 0.5rem;
   background-color: #fff;
   border: 1px solid #67676730;
   border-radius: 6px;
   box-shadow: 1px 1px 1px #67676730;
   font-size: 0.75rem;
+  user-select: none;
+}
+
+.info-icon:hover .info-text {
+  display: block;
 }
 
 .button-container {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .submit-post {
-    min-width: 100px;
-    min-height: 40px;
-    color: #fff;
-    background-color: var(--button-primary);
-    outline: none;
-    border: none;
-    border-color: var(--border);
-    border-radius: 6px;
-    cursor: pointer;
+  min-width: 100px;
+  min-height: 40px;
+  color: #fff;
+  background-color: var(--button-primary);
+  outline: none;
+  border: none;
+  border-color: var(--border);
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .submit-post:hover,
 .submit-post:focus {
-    background-color: var(--primary-hover);
+  background-color: var(--primary-hover);
 }
 
 @media (max-width: 600px) {
-    .submit-post {
-        flex: 1;
-    }
+  .submit-post {
+    flex: 1;
+  }
+}
+
+.all-posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem auto;
+  padding: 1rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.post-to-edit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 50rem;
+  padding: 0.5rem 1rem;
+  border: solid 1px var(--border);
+  border-radius: 6px;
+  box-shadow: 0 0 5px var(--border);
+}
+
+.edit-text {
+  flex: 1;
+  width: fit-content;
+  max-width: 50%;
+  cursor: pointer;
+}
+
+.edit-title {
+  width: fit-content;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.edit-body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
+.edit-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.edit-options i {
+  color: var(--text-secondary);
+}
+
+.action-icon {
+  position: relative;
+}
+
+.action-icon:hover .info-text {
+  display: block;
+}
+
+.edit-options i:hover,
+.edit-options i:focus {
+  color: black;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .edit h1 {
+    font-size: 1.75rem;
+  }
+
+  .edit-title {
+    font-size: 1.25rem;
+  }
+}
+
+.edit-back {
+  background-color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0.25rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.edit-search {
+  margin-top: 1.5rem;
+}
+
+.edit-search input {
+  display: block;
+  background-image: url("/assets/icons/search.svg");
+  background-size: 0.75rem;
+  background-repeat: no-repeat;
+  background-position: left 0.5rem center;
+  padding-left: 1.75rem !important;
+  margin: 0.5rem auto;
+  font-size: 0.875rem;
 }

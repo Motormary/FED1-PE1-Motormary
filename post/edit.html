@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/pages/edit.css">
     <script type="module" src="/js/components/nav/nav.mjs"></script>
     <script type="module" src="/js/components/footer/footer.mjs"></script>
+    <script type="module" src="/js/pages/edit.mjs"></script>
 </head>
 
 <body>
@@ -20,8 +21,18 @@
         <nav-bar></nav-bar>
     </header>
     <main class="container edit">
-        <h1>Edit Post</h1>
-        <form action="" method="get" class="editor-container">
+        <h1>Edit Posts</h1>
+        <div class="edit-search">
+            <input type="search" placeholder="Filter posts">
+        </div>
+        <div class="all-posts-container">
+            <img id="loading-spinner" src="/assets/images/spinner.svg" alt="loading...">
+        </div>
+        <form id="editPost" method="get" class="editor-container">
+            <button class="edit-back description">
+                <i class="fa-solid fa-arrow-left fa-md"></i>
+                Back to list
+            </button>
             <div class="input-container">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title">
@@ -35,13 +46,20 @@
             <div class="edit-bottom">
                 <div class="input-container">
 
-                    <label for="media">Media URL</label>
+                    <label for="media" class="icon-label">Media URL
+                        <span class="info-icon">
+                            <i class="fa-solid fa-info"></i>
+                            <div class="info-text">
+                                <p>1400*160 pixels recommended</p>
+                            </div>
+                        </span>
+                    </label>
                     <input type="text" name="media" id="media">
 
                 </div>
                 <div class="input-container tags">
 
-                    <label for="tags" class="tags-label">Tags
+                    <label for="tags" class="icon-label">Tags
                         <span class="info-icon">
                             <i class="fa-solid fa-info"></i>
                             <div class="info-text">
@@ -49,13 +67,14 @@
                             </div>
                         </span>
                     </label>
-                        <input type="text" name="tags" id="tags">
+                    <input type="text" name="tags" id="tags">
                 </div>
             </div>
             <div class="button-container">
                 <button class="submit-post" type="submit">Submit</button>
             </div>
         </form>
+        <div id="toast"></div>
     </main>
     <hvl-footer></hvl-footer>
 </body>

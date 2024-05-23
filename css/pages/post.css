@@ -1,5 +1,18 @@
 @import url("../styles.css");
 
+.banner {
+    max-height: 160px;
+    max-width: 1400px;
+    overflow: hidden;
+}
+
+.post-banner {
+    height: 160px;
+    width: 1400px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .post-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -41,6 +54,21 @@
     height: 1.5rem;
     width: 1.5rem;
     border-radius: 50%;
+}
+
+.more-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    gap: 0.5rem;
+}
+
+.other-title {
+    font-weight: bold; font-size: 0.875rem;
+}
+
+.other-body {
+    font-size: 0.75rem;
 }
 
 @media (max-width: 600px) {

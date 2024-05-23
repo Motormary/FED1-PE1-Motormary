@@ -21,7 +21,7 @@ export default function createAuthedNav(navList) {
     dropdown.classList.add("dropdown-content")
   
     const userMail = document.createElement("span")
-    userMail.textContent = getAuthField("email") || "Logged in"
+    userMail.textContent = getAuthField("name") || "Logged in"
   
     const postLink = document.createElement("a")
     postLink.href = "/post/create.html"

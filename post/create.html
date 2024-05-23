@@ -35,12 +35,19 @@
             </div>
             <div class="edit-bottom">
                 <div class="input-container">
-                    <label for="media">Media URL</label>
-                    <input type="text" name="media" id="media">
+                    <label for="media" class="icon-label">Media URL
+                        <span class="info-icon">
+                            <i class="fa-solid fa-info"></i>
+                            <div class="info-text">
+                                <p>1400*160 pixels recommended</p>
+                            </div>
+                        </span>
+                    </label>
+                    <input type="text" name="media" id="media" required>
                     <span class="error-message media-error"></span>
                 </div>
                 <div class="input-container tags">
-                    <label for="tags" class="tags-label">Tags
+                    <label for="tags" class="icon-label">Tags
                         <span class="info-icon">
                             <i class="fa-solid fa-info"></i>
                             <div class="info-text">

@@ -130,4 +130,18 @@ textarea:focus {
   color: red;
 }
 
+#loading-spinner {
+  position: absolute;
+  max-width: 100px;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  animation: loading 5s infinite linear;
+}
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* * { outline: solid 1px rgba(255, 0, 0, 0.171); } */

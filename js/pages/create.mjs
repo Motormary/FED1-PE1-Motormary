@@ -2,7 +2,7 @@ import { getAuthField } from "../auth.mjs"
 import { showToast } from "../components/toast.mjs"
 import handleErrors from "../functions/handle-input-errors.mjs"
 import removeErrors from "../functions/remove-errors.mjs"
-import { CREATE_URL } from "../urls.mjs"
+import { POSTS_URL } from "../urls.mjs"
 const form = document.querySelector("form#create")
 
 form.addEventListener("submit", createPost)
@@ -17,7 +17,7 @@ async function createPost(event) {
   const formObject = formatPostData(formData)
 
   try {
-    const response = await fetch(CREATE_URL + author, {
+    const response = await fetch(POSTS_URL + author, {
       method: "POST",
       "Content-Type": "application/json",
       headers: {
