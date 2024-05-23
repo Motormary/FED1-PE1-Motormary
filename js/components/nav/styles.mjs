@@ -56,6 +56,7 @@ a {
     position: relative;
     height: 2.5rem; 
     width: 2.5rem;
+    user-select: none;
 }
 
 .dropdown:focus {
@@ -67,6 +68,7 @@ a {
     width: 2.5rem; 
     border-radius: 50%; 
     cursor: pointer;
+    user-select: none;
 }
 
 
@@ -132,6 +134,25 @@ a {
         padding: 0 2.5%;
     }
 }
+
+@media (max-width: 810px) {
+    .dropdown-content {
+        top: -0.5rem;
+        right: -0.75rem;
+        bottom: 0;
+        width: 100vw;
+        height: fit-content;
+        text-align: center;
+    }
+
+    .dropdown-content > * {
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+    }
+}
+
 
 `
 

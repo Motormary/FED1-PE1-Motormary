@@ -29,13 +29,17 @@ export default function createAuthedNav(navList) {
   
     const editLink = document.createElement("a")
     editLink.href = "/post/list.html"
-    editLink.textContent = "Edit Post"
+    editLink.textContent = "All Posts"
+
+    const newAcc = document.createElement("a")
+    newAcc.href = "/account/register.html"
+    newAcc.textContent = "New Account"
   
     const logoutBtn = document.createElement("button")
     logoutBtn.classList.add("logout")
     logoutBtn.textContent = "Sign out"
   
-    dropdown.append(userMail, postLink, editLink, logoutBtn)
+    dropdown.append(userMail, postLink, newAcc, editLink, logoutBtn)
     avatarItem.append(avatarImg, dropdown)
   
     navList.append(blogItem, avatarItem)

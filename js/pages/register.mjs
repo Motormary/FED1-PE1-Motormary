@@ -5,6 +5,10 @@ import removeErrors from "../functions/remove-errors.mjs"
 import validatePassword from "../functions/validate-password.mjs"
 import { REGISTER_URL } from "../urls.mjs"
 
+const auth = getAuth()
+
+if (!auth) window.location.replace("/account/login.html")
+
 const registerForm = document.querySelector("form#registerForm")
 registerForm.addEventListener("submit", registerUser)
 
@@ -30,7 +34,7 @@ async function registerUser(event) {
     })
 
     if (response.ok) {
-      window.location.href = "/account/login.html"
+      showToast("Account created successfully!")
     } else {
       const data = await response.json()
       if (data.errors.length && data.errors[0]?.path) {
