@@ -113,6 +113,7 @@ textarea:focus {
   z-index: 1;
   right: 1%;
   bottom: 30px;
+  text-align: center;
   box-shadow: 0 0 5px var(--border);
   transition: transform 0.3s ease-in-out;
   transform: translateY(100%);
@@ -122,6 +123,11 @@ textarea:focus {
 #toast.show {
   visibility: visible;
   transform: translateY(-50%);
+}
+
+.error,
+.error-message {
+  color: red;
 }
 
 /* * { outline: solid 1px rgba(255, 0, 0, 0.171); } */

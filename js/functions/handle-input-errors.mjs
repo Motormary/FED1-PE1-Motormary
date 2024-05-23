@@ -4,7 +4,7 @@ export default function handleErrors(data) {
       const errorPath = error.path[0]
       
       const fieldWithError = document.querySelector(`label[for=${errorPath}]`)
-      const errorField = document.querySelector(`span#reg_${errorPath}_error`)
+      const errorField = document.querySelector(`span.${errorPath}-error`)
       
       fieldWithError.classList.add("error")
       errorField.textContent = errorMessage

@@ -1,4 +1,4 @@
-import { logout } from "../../auth.mjs"
+import { getAuthField, logout } from "../../auth.mjs"
 
 export default function createAuthedNav(navList) {
     navList.innerHTML = ""
@@ -13,14 +13,15 @@ export default function createAuthedNav(navList) {
     avatarItem.classList.add("dropdown")
     avatarItem.tabIndex = 0
     const avatarImg = document.createElement("img")
-    avatarImg.src = "/assets/images/alt.png"
+    avatarImg.src = getAuthField("avatar").url || "/assets/images/alt.png"
     avatarImg.alt = "AA"
   
+    
     const dropdown = document.createElement("div")
     dropdown.classList.add("dropdown-content")
   
     const userMail = document.createElement("span")
-    userMail.textContent = localStorage.email || sessionStorage.email || "Logged in"
+    userMail.textContent = getAuthField("email") || "Logged in"
   
     const postLink = document.createElement("a")
     postLink.href = "/post/create.html"

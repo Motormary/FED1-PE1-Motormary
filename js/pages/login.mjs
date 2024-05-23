@@ -25,15 +25,10 @@ async function loginUser(event) {
     if (response.ok) {
       const responseData = await response.json()
       const data = responseData.data
-      const accessToken = data.accessToken
+      const isSaveSelected = formData.has("save-auth")
+      
+      handleSaveAuth(data, isSaveSelected)
 
-      if (formData.has("save-auth")) {
-        localStorage.auth = accessToken
-        localStorage.email = data.email
-      } else {
-        sessionStorage.auth = accessToken
-        sessionStorage.email = data.email
-      }
       window.location.href = "/"
       
     } else {
@@ -44,5 +39,13 @@ async function loginUser(event) {
   } catch (e) {
     showToast("Something went wrong, try again or contact support.")
     console.error(e)
+  }
+}
+
+function handleSaveAuth(data, save) {
+  if (save) {
+    localStorage.hvlAuth = JSON.stringify(data)
+  } else {
+    sessionStorage.hvlAuth = JSON.stringify(data)
   }
 }

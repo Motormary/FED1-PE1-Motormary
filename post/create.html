@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/pages/edit.css">
     <script type="module" src="/js/components/nav/nav.mjs"></script>
     <script type="module" src="/js/components/footer/footer.mjs"></script>
+    <script type="module" src="/js/pages/create.mjs"></script>
 </head>
 
 <body>
@@ -21,26 +22,24 @@
     </header>
     <main class="container edit">
         <h1>New Post</h1>
-        <form action="" method="get" class="editor-container">
+        <form id="create" class="editor-container">
             <div class="input-container">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title">
+                <input type="text" name="title" id="title" required>
+                <span class="error-message title-error"></span>
             </div>
             <div class="input-container">
-
                 <label for="body">Body</label>
                 <textarea name="body" id="body" rows="20"></textarea>
-
+                <span class="error-message body-error"></span>
             </div>
             <div class="edit-bottom">
                 <div class="input-container">
-
                     <label for="media">Media URL</label>
                     <input type="text" name="media" id="media">
-
+                    <span class="error-message media-error"></span>
                 </div>
                 <div class="input-container tags">
-
                     <label for="tags" class="tags-label">Tags
                         <span class="info-icon">
                             <i class="fa-solid fa-info"></i>
@@ -49,13 +48,15 @@
                             </div>
                         </span>
                     </label>
-                        <input type="text" name="tags" id="tags">
+                    <input type="text" name="tags" id="tags" required>
+                    <span class="error-message tags-error"></span>
                 </div>
             </div>
             <div class="button-container">
                 <button class="submit-post" type="submit">Submit</button>
             </div>
         </form>
+        <div id="toast"></div>
     </main>
     <hvl-footer></hvl-footer>
 </body>

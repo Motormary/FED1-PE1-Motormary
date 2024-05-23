@@ -1,4 +1,4 @@
-import { checkAuth } from "../../auth.mjs"
+import { getAuth } from "../../auth.mjs"
 import createAuthedNav from "./create-auth-nav.mjs"
 import { contentStyle, navStyle } from "./styles.mjs"
 
@@ -40,7 +40,7 @@ class CustomNav extends HTMLElement {
   connectedCallback() {
     const navLinks = this.shadowRoot.querySelector("ul")
 
-    const isAuthed = checkAuth()
+    const isAuthed = getAuth()
 
     if (isAuthed) createAuthedNav(navLinks)
 
