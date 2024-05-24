@@ -33,7 +33,7 @@ h3 {
   color: var(--text-secondary);
 }
 
-.feed {
+.feed:not(.description) {
   font-size: 1.125rem;
 }
 
@@ -60,7 +60,7 @@ main {
 
 select {
   background-color: transparent;
-  border: solid 1px lightgray;
+  border: solid 1px var(--border);
   border-radius: 6px;
   padding: 0.25rem 0.5rem;
   margin: 0;
@@ -69,6 +69,11 @@ select {
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
+}
+
+select * {
+  background-color: transparent;
+  border: 1px solid var(--border);
 }
 
 /* Control for label+input */

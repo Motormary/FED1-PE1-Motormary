@@ -1,7 +1,9 @@
-import { getAuthField } from "../auth.mjs"
+import { getAuth } from "../auth.mjs"
 import { postOrPatchPost } from "../functions/post-or-patch.mjs"
 
 const form = document.querySelector("form")
-const auth = getAuthField("name")
+const auth = getAuth()
 
-form.addEventListener("submit", (e) => postOrPatchPost(e, "POST", auth))
+if (!auth) window.location.replace("/account/login.html")
+
+form.addEventListener("submit", (e) => postOrPatchPost(e, "POST", auth.name))

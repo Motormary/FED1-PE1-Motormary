@@ -13,7 +13,9 @@
     <script type="module" src="js/components/nav/nav.mjs"></script>
     <script src="https://kit.fontawesome.com/abcb7b9301.js" crossorigin="anonymous"></script>
     <script type="module" src="js/components/footer/footer.mjs"></script>
+    <script type="module" src="js/functions/carousel.mjs"></script>
     <script type="module" src="js/index.mjs"></script>
+    <script type="module" src="/js/functions/format-array-by-date.mjs"></script>
 </head>
 
 <body>
@@ -23,9 +25,24 @@
     <main class="container">
         <div class="carousel">
             <div class="carousel-images">
-                <a class="banner" id="banner1" href="/"><img src="assets/images/b1.png" alt="banner 1"></a>
-                <a class="banner" id="banner2" href="/"><img src="assets/images/b2.png" alt="banner 2"></a>
-                <a class="banner" id="banner3" href="/"><img src="assets/images/b3.png" alt="banner 3"></a>
+                <a class="banner" href="/">
+                    <div class="banner-title-container">
+                        <h1 class="banner-title"></h1>
+                        <p class="banner-body"></p>
+                    </div>
+                </a>
+                <a class="banner" href="/">
+                    <div class="banner-title-container">
+                        <h1 class="banner-title"></h1>
+                        <p class="banner-body"></p>
+                    </div>
+                </a>
+                <a class="banner" href="/">
+                    <div class="banner-title-container">
+                        <h1 class="banner-title"></h1>
+                        <p class="banner-body"></p>
+                    </div>
+                </a>
             </div>
             <div class="banner-controls">
                 <button class="prev">
@@ -41,110 +58,52 @@
         </div>
         <div class="filters">
             <ul>
-                <li><a class="feed" href="/">All posts</a></li>
-                <li><a class="feed" href="?tag=ai">Artificial Intelligence</a></li>
-                <li><a class="feed" href="?tag=crypto">Cryptography</a></li>
-                <li><a class="feed" href="?tag=ml">Machine Learning</a></li>
-                <li><a class="feed" href="?tag=cs">Cyber Security</a></li>
+                <li>
+                    <button class="feed" data-value="">All posts</button>
+                </li>
+                <li>
+                    <button class="feed" data-value="ai">Artificial Intelligence</button>
+                </li>
+                <li>
+                    <button class="feed" data-value="cg">Cryptography</button>
+                </li>
+                <li>
+                    <button class="feed" data-value="ml">Machine Learning</button>
+                </li>
+                <li>
+                    <button class="feed" data-value="cs">Cyber Security</button>
+                </li>
                 <li>
                     <select class="filter-select" name="sortby" id="sortby">
-                        <option selected hidden>Sort by</option>
+                        <option value="sortby" selected hidden>Sort by</option>
                         <option value="newest">Newest</option>
                         <option value="oldest">Oldest</option>
                     </select>
                 </li>
+                <li>
+                    <button id="clear-filters" class="description">Clear Filters</button>
+                </li>
             </ul>
             <div class="search-container">
                 <div class="search-bar">
-                    <i class="fa-solid fa-magnifying-glass search-icon fa-xs"></i>
-                    <input class="search" placeholder="Search..." type="text">
+                    <i tabindex="0" class="fa-solid fa-magnifying-glass search-icon fa-xs"></i>
+                    <input id="search-posts" class="search" placeholder="Search..." type="text">
                 </div>
             </div>
         </div>
         <section id="posts">
             <h1 class="blog-feed">All posts</h1>
             <div class="thumbnails-container">
-                <div href="/" class="thumbnail">
-                    <a href="/">
-                        <img src="assets/images/b1.png" alt="">
-                    </a>
-                    <div class="thumbnail-text">
-                        <span>Machine Learning</span>
-                        <a href="/">
-                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
-                        </a>
-                        <div class="thumbnail-creator">
-                            <a href="/" class="creator">
-                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
-                                <p>Creator</p>
-                            </a>
-                            <p>Date</p>
-                        </div>
-                    </div>
-                </div>
-                <div href="/" class="thumbnail">
-                    <a href="/">
-                        <img src="assets/images/b1.png" alt="">
-                    </a>
-                    <div class="thumbnail-text">
-                        <span>Machine Learning</span>
-                        <a href="/">
-                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
-                        </a>
-                        <div class="thumbnail-creator">
-                            <a href="/" class="creator">
-                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
-                                <p>Creator</p>
-                            </a>
-                            <p>Date</p>
-                        </div>
-                    </div>
-                </div>
-                <div href="/" class="thumbnail">
-                    <a href="/">
-                        <img src="assets/images/b1.png" alt="">
-                    </a>
-                    <div class="thumbnail-text">
-                        <span>Machine Learning</span>
-                        <a href="/">
-                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
-                        </a>
-                        <div class="thumbnail-creator">
-                            <a href="/" class="creator">
-                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
-                                <p>Creator</p>
-                            </a>
-                            <p>Date</p>
-                        </div>
-                    </div>
-                </div>
-                <div href="/" class="thumbnail">
-                    <a href="/">
-                        <img src="assets/images/b1.png" alt="">
-                    </a>
-                    <div class="thumbnail-text">
-                        <span>Machine Learning</span>
-                        <a href="/">
-                            <p class="thumbnail-title">Lorem Ipsum pipsum</p>
-                        </a>
-                        <div class="thumbnail-creator">
-                            <a href="/" class="creator">
-                                <img class="creator-avatar" src="assets/images/alt.png" alt="">
-                                <p>Creator</p>
-                            </a>
-                            <p>Date</p>
-                        </div>
-                    </div>
-                </div>
+                <img id="loading-spinner" src="/assets/images/spinner.svg" alt="">
             </div>
             <div class="pagination">
-                <span class="first-page">First Page</span>
+                <a class="first-page" href="?page=1">First Page</a>
                 <a href="/" class="page">1</a>
                 <a href="/" class="page">2</a>
                 <a href="/" class="page">3</a>
                 <a href="/" class="page">4</a>
                 <a href="/" class="page">5</a>
-                <span class="last-page">Last Page</span>
+                <a class="last-page">Last Page</a>
             </div>
         </section>
     </main>

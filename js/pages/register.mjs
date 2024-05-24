@@ -1,3 +1,4 @@
+import { getAuth } from "../auth.mjs"
 import { showToast } from "../components/toast.mjs"
 import formatRegData from "../functions/format-registration-data.mjs"
 import handleErrors from "../functions/handle-input-errors.mjs"

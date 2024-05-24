@@ -16,6 +16,12 @@ const url = new URLSearchParams(window.location.search)
 const author = url.get("author")
 const postId = url.get("postId")
 
+const auth = getAuth()
+
+if (!auth) {
+  window.location.replace("/account/login.html")
+}
+
 formEl.addEventListener("submit", (e) => {
   postOrPatchPost(e, "PUT", author, postId)
 })
@@ -27,11 +33,6 @@ deleteBtn.addEventListener("click", (e) => {
 
 backBtn.addEventListener("click", () => window.history.back())
 
-const auth = getAuth()
-
-if (!auth) {
-  window.location.replace("/account/login.html")
-}
 
 async function getEditPost() {
   if (author && postId) {
