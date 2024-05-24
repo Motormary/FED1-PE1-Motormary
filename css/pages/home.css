@@ -177,47 +177,62 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: solid 1px var(--border);
+  border: solid 5px var(--border);
   border-radius: 6px;
-  overflow: hidden;
 }
 
-.thumbnail span#glow {
+.thumbnail-border{
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(420px);
-  width: 1rem;
-  height: 1rem;
-  background-color: red;
-  display: block;
-  box-sizing: border-box;
-  animation: glow 10 forwards infinite linear;
+  height: 100%;
+  width: 100%;
+  filter: blur(10px);
+  z-index: -1;
+  overflow: hidden; 
+	border-radius: 10px;
 }
+
+.thumbnail-border:before {
+  position: absolute;
+	width: 1000px;
+	height: 1000px;
+  content: '';
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(0deg);
+	background-image: conic-gradient(rgba(0, 0, 0, 0), #198ded, rgba(0,0,0,0) 40%);
+	animation: glow 3s linear infinite;
+}
+
+.thumbnail-border {
+  display: none;
+}
+
+.thumbnail:hover .thumbnail-border {
+  display: block;
+} 
 
 @keyframes glow {
-  25% {
-    transform: translateX();
-  }
-  
-}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+} 
 
-.thumbnail:hover::after,
-.thumbnail:focus-within::after {
-  box-shadow: 0 0 5px var(--secondary);
-}
+
 
 .thumbnail img {
   height: 10rem;
   width: 100%;
   object-fit: cover;
+  border-radius: 4px 4px 0 0;
 }
 
 .thumbnail-text {
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.5rem;
+  background-color: #fff;
 }
 
 .thumbnail-text > *:not(.thumbnail-title) {
@@ -234,8 +249,9 @@
 
 .thumbnail-creator {
   display: flex;
+  height: 100%;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
 }
 
 .creator p {

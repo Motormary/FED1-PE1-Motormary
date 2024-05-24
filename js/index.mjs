@@ -125,18 +125,13 @@ function createThumbnails(data) {
     thumbnailEl.classList.add("thumbnail")
     thumbnailEl.addEventListener("mouseover", borderEffect)
     thumbnailEl.innerHTML = `
-            <a href="/post/index.html?author=${post.author.name}&postId=${
-      post.id
-    }">
-                <img src="${post.media.url}" alt="${
-      post?.media?.url || "Post Banner"
-    }">
+    <div class="thumbnail-border"></div>
+            <a href="/post/index.html?author=${post.author.name}&postId=${post.id}">
+                <img src="${post.media.url}" alt="${post?.media?.url || "Post Banner"}">
             </a>
         <div class="thumbnail-text">
             <span>${post.tags[0]}</span>
-            <a href="/post/index.html?author=${post.author.name}&postId=${
-      post.id
-    }">
+            <a href="/post/index.html?author=${post.author.name}&postId=${post.id}">
                 <p class="thumbnail-title">${post.title}</p>
             </a>
             <div class="thumbnail-creator">
@@ -153,5 +148,3 @@ function createThumbnails(data) {
     containerEl.appendChild(thumbnailEl)
   })
 }
-
-document.addEventListener("DOMContentLoaded", function (event) {})
