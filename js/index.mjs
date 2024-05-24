@@ -1,5 +1,7 @@
 import { getAllPosts } from "../js/functions/get-all-posts.mjs"
 import formatPostsByAge from "./functions/format-array-by-date.mjs"
+import formateDateTime from "./functions/format-date.mjs"
+import borderEffect from "./functions/thumbnail-effect.mjs"
 
 const containerEl = document.querySelector("div.thumbnails-container")
 const searchEl = document.querySelector("input#search-posts")
@@ -40,14 +42,15 @@ filterEl.forEach((filter) => {
   filter.addEventListener("click", () => handleQueryParams("tag", value))
 })
 
-/* clearFilterEL.addEventListener("click", () => {
-    url.forEach((value, key) => {
-        console.log(url)
-    })
-}) */
+clearFilterEL.addEventListener("click", (e) => {
+  let params = new URLSearchParams(window.location.search)
+  params.forEach((value, key) => url.delete(key))
+  searchEl.value = ""
+  selectEl.value = "sortby"
+  handleUpdateUrl()
+})
 
 function handleQueryParams(key, value) {
-  console.log(key, value)
   if (key && !value) {
     url.delete(key)
   } else {
@@ -67,6 +70,8 @@ async function populatePosts() {
   const response = await getAllPosts("mkm", page ? page : 1, 12)
   if (response?.data.length) {
     handleFilterData(response.data)
+    if (url.size) clearFilterEL.style = "visibility: visible;"
+    else clearFilterEL.style = "visibility: hidden;"
   } else containerEl.innerHTML = `<p>There are no posts to display</p>`
 }
 
@@ -114,10 +119,12 @@ populatePosts()
 
 // Create thumbnails - Prettier's a bitch
 function createThumbnails(data) {
-  let thumbnails = ""
+  containerEl.innerHTML = ""
   data.forEach((post, index) => {
-    return (thumbnails += `
-    <div class="thumbnail">
+    const thumbnailEl = document.createElement("div")
+    thumbnailEl.classList.add("thumbnail")
+    thumbnailEl.addEventListener("mouseover", borderEffect)
+    thumbnailEl.innerHTML = `
             <a href="/post/index.html?author=${post.author.name}&postId=${
       post.id
     }">
@@ -137,14 +144,14 @@ function createThumbnails(data) {
                     <img class="creator-avatar" src="${
                       post.author.avatar.url
                     }" alt="${post.author.avatar.alt}">
-                    <p>Creator</p>
+                    <p>${post.author.name}</p>
                 </div>
-                <p>Date</p>
+                <p>${formateDateTime(post.created)}</p>
             </div>
         </div>
-    </div>
-        `)
+        `
+    containerEl.appendChild(thumbnailEl)
   })
-
-  containerEl.innerHTML = thumbnails
 }
+
+document.addEventListener("DOMContentLoaded", function (event) {})
