@@ -4,7 +4,7 @@ const carousel = document.querySelector("div.carousel-images")
 const next = document.querySelector("button.next")
 const prev = document.querySelector("button.prev")
 const imageHrefEl = document.querySelectorAll("a.banner")
-const bannerTitleEl = document.querySelectorAll("h1.banner-title")
+const bannerTitleEl = document.querySelectorAll("h2.banner-title")
 const bannerBodyEl = document.querySelectorAll("p.banner-body")
 const totalImages = imageHrefEl.length
 const bannerDot = document.querySelectorAll(".banner-dot")
@@ -17,12 +17,13 @@ async function getPostsForCarousel() {
 
     if (response?.data[0]?.id) {
       response.data.forEach((post, index) => {
+        const bodySnippet = post?.body?.split(".") || [""]
         imageHrefEl[index].style = `
         background-image: url("${post.media.url}");
         `
         imageHrefEl[index].href = `/post/index.html?author=${post.author.name}&postId=${post.id}`
         bannerTitleEl[index].textContent = post.title
-        bannerBodyEl[index].textContent = post.body.slice(0, 100) + "..."
+        bannerBodyEl[index].textContent = bodySnippet[0]
       })
     } else console.error("No images found", response.data)
 }

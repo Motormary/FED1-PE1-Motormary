@@ -147,4 +147,8 @@ textarea:focus {
   }
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 /* * { outline: solid 1px rgba(255, 0, 0, 0.171); } */

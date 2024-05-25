@@ -9,8 +9,8 @@ const searchIcon = document.querySelector("i.search-icon")
 const filterEl = document.querySelectorAll("button.feed")
 const selectEl = document.querySelector("select.filter-select")
 const clearFilterEL = document.querySelector("button#clear-filters")
+const loadMoreBtn = document.querySelector("button#load-more")
 let url = new URLSearchParams(window.location.search)
-const page = url.get("page")
 
 searchIcon.addEventListener("click", () =>
   handleQueryParams("search", searchEl.value.toLowerCase())
@@ -42,12 +42,19 @@ filterEl.forEach((filter) => {
   filter.addEventListener("click", () => handleQueryParams("tag", value))
 })
 
-clearFilterEL.addEventListener("click", (e) => {
+clearFilterEL.addEventListener("click", () => {
   let params = new URLSearchParams(window.location.search)
   params.forEach((value, key) => url.delete(key))
   searchEl.value = ""
   selectEl.value = "sortby"
   handleUpdateUrl()
+  loadMoreBtn.classList.remove("hidden")
+})
+
+
+loadMoreBtn.addEventListener("click", () => {
+  const sizeValue = url.get("size") || 12
+  handleQueryParams("size", Number(sizeValue) + 12)
 })
 
 function handleQueryParams(key, value) {
@@ -67,9 +74,19 @@ function handleUpdateUrl() {
 }
 
 async function populatePosts() {
-  const response = await getAllPosts("mkm", page ? page : 1, 12)
+  const page = url.get("page")
+  const order = url.get("order")
+  const size = url.get("size")
+  
+  const response = await getAllPosts(
+    "mkm",
+    page ? page : 1,
+    size ? size : 12,
+    order ? order : "desc"
+  )
   if (response?.data.length) {
     handleFilterData(response.data)
+    handleMorePosts(response)
     if (url.size) clearFilterEL.style = "visibility: visible;"
     else clearFilterEL.style = "visibility: hidden;"
   } else containerEl.innerHTML = `<p>There are no posts to display</p>`
@@ -78,16 +95,17 @@ async function populatePosts() {
 function handleFilterData(data) {
   const tagQuery = url.get("tag")
   const searchQuery = url.get("search")
-  const orderQuery = url.get("order")
   let filteredData = data
   if (tagQuery || searchQuery) {
     filteredData = data.filter((post) => {
       if (searchQuery && tagQuery) {
         return (
+          // Returns if both title and tag queries match
           (post.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
             post.tags.some((tag) =>
               tag.toLowerCase().includes(tagQuery.toLowerCase())
-            )) ||
+            )) || // OR
+            // Returns if both body and tag queries match
           (post.body.toLowerCase().includes(searchQuery.toLowerCase()) &&
             post.tags.some((tag) =>
               tag.toLowerCase().includes(tagQuery.toLowerCase())
@@ -95,10 +113,12 @@ function handleFilterData(data) {
         )
       } else if (searchQuery && !tagQuery) {
         return (
+          // Returns if either title or body matches
           post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           post.body.toLowerCase().includes(searchQuery.toLowerCase())
         )
       } else if (tagQuery && !searchQuery) {
+        // Returns tag queries
         return post.tags.some((tag) =>
           tag.toLowerCase().includes(tagQuery.toLowerCase())
         )
@@ -106,45 +126,55 @@ function handleFilterData(data) {
     })
   }
 
-  if (orderQuery === "oldest") {
-    filteredData = formatPostsByAge(filteredData)
-  }
-
   if (!filteredData?.length) {
     containerEl.innerHTML = `<p>No results</p>`
-  } else createThumbnails(filteredData)
+  } else {
+    createThumbnails(filteredData)
+  }
+}
+
+function handleMorePosts(data) {
+  console.log("asd")
+  if (!data.meta.nextPage) {
+    loadMoreBtn.classList.add("hidden")
+  }
 }
 
 populatePosts()
 
-// Create thumbnails - Prettier's a bitch
 function createThumbnails(data) {
-  containerEl.innerHTML = ""
+  let thumbnailHtml = ""
   data.forEach((post, index) => {
-    const thumbnailEl = document.createElement("div")
-    thumbnailEl.classList.add("thumbnail")
-    thumbnailEl.addEventListener("mouseover", borderEffect)
-    thumbnailEl.innerHTML = `
-    <div class="thumbnail-border"></div>
-            <a href="/post/index.html?author=${post.author.name}&postId=${post.id}">
-                <img src="${post.media.url}" alt="${post?.media?.url || "Post Banner"}">
-            </a>
-        <div class="thumbnail-text">
-            <span>${post.tags[0]}</span>
-            <a href="/post/index.html?author=${post.author.name}&postId=${post.id}">
-                <p class="thumbnail-title">${post.title}</p>
-            </a>
-            <div class="thumbnail-creator">
-                <div class="creator">
-                    <img class="creator-avatar" src="${
-                      post.author.avatar.url
-                    }" alt="${post.author.avatar.alt}">
-                    <p>${post.author.name}</p>
-                </div>
-                <p>${formateDateTime(post.created)}</p>
-            </div>
+    thumbnailHtml += `
+    <div class="thumbnail">
+      <div class="thumbnail-border"></div>
+              <a href="/post/index.html?author=${post.author.name}&postId=${
+        post.id
+      }">
+                  <img src="${post.media.url}" alt="${
+        post?.media?.url || "Post Banner"
+      }">
+              </a>
+          <div class="thumbnail-text">
+              <span>${post.tags[0]}</span>
+              <a href="/post/index.html?author=${post.author.name}&postId=${
+        post.id
+      }">
+                  <p class="thumbnail-title">${post.title}</p>
+              </a>
+              <div class="thumbnail-creator">
+                  <div class="creator">
+                      <img class="creator-avatar" src="${
+                        post.author.avatar.url
+                      }" alt="${post.author.avatar.alt}">
+                      <p>${post.author.name}</p>
+                  </div>
+                  <p>${formateDateTime(post.created)}</p>
+              </div>
         </div>
+    </div>
+
         `
-    containerEl.appendChild(thumbnailEl)
+    containerEl.innerHTML = thumbnailHtml
   })
 }

@@ -26,19 +26,19 @@
             <div class="carousel-images">
                 <a class="banner" href="/">
                     <div class="banner-title-container">
-                        <h1 class="banner-title"></h1>
+                        <h2 class="banner-title"></h1>
                         <p class="banner-body"></p>
                     </div>
                 </a>
                 <a class="banner" href="/">
                     <div class="banner-title-container">
-                        <h1 class="banner-title"></h1>
+                        <h2 class="banner-title"></h1>
                         <p class="banner-body"></p>
                     </div>
                 </a>
                 <a class="banner" href="/">
                     <div class="banner-title-container">
-                        <h1 class="banner-title"></h1>
+                        <h2 class="banner-title"></h1>
                         <p class="banner-body"></p>
                     </div>
                 </a>
@@ -75,8 +75,8 @@
                 <li>
                     <select class="filter-select" name="sortby" id="sortby">
                         <option value="sortby" selected hidden>Sort by</option>
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
+                        <option value="desc">Newest</option>
+                        <option value="asc">Oldest</option>
                     </select>
                 </li>
                 <li>
@@ -94,15 +94,9 @@
             <h1 class="blog-feed">All posts</h1>
             <div class="thumbnails-container">
                 <img id="loading-spinner" src="/assets/images/spinner.svg" alt="">
-            </div>
-            <div class="pagination">
-                <a class="first-page" href="?page=1">First Page</a>
-                <a href="/" class="page">1</a>
-                <a href="/" class="page">2</a>
-                <a href="/" class="page">3</a>
-                <a href="/" class="page">4</a>
-                <a href="/" class="page">5</a>
-                <a class="last-page">Last Page</a>
+                <div class="pagination">
+                    <button id="load-more">Load More</button>
+                </div>
             </div>
         </section>
     </main>
