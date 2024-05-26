@@ -72,24 +72,42 @@ main {
 
 .button-container {
   display: flex;
+  gap: 1rem;
   justify-content: end;
 }
 
-.submit-post {
+.submit-post,
+.delete-post {
   min-width: 100px;
   min-height: 40px;
   color: #fff;
-  background-color: var(--button-primary);
   outline: none;
   border: none;
-  border-color: var(--border);
   border-radius: 6px;
+  font-size: 0.875rem;
   cursor: pointer;
+}
+
+.submit-post {
+  background-color: var(--button-primary);
+}
+
+.delete-post {
+  background-color: #fff;
+  color: var(--text-secondary);
+  border: solid 2px var(--border);
+}
+
+.delete-post:hover,
+.delete-post:focus {
+  color: black;
+  box-shadow: 1px 1px 2px var(--secondary);
 }
 
 .submit-post:hover,
 .submit-post:focus {
   background-color: var(--primary-hover);
+  box-shadow: 1px 1px 2px var(--secondary);
 }
 
 @media (max-width: 600px) {
