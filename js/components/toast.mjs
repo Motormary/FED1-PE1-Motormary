@@ -1,5 +1,5 @@
 // Function to show the toast element
-export function showToast(message, href, duration = 5000) {
+export function showToast(message, href, duration = 8000) {
   const toast = document.getElementById("toast");
   toast.innerText = message;
   toast.classList.add("show");

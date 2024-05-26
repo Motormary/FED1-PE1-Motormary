@@ -37,6 +37,7 @@ async function registerUser(event) {
 
     if (response.ok) {
       showToast("Account created successfully!")
+      clearInputs() // Clear all inputs if success
     } else {
       const data = await response.json()
       if (data.errors.length && data.errors[0]?.path) {
@@ -51,4 +52,9 @@ async function registerUser(event) {
   }
 }
 
-
+function clearInputs() {
+  const inputEls = document.querySelectorAll("input")
+  const textEl = document.querySelector("textarea")
+  textEl.value = ""
+  inputEls.forEach((input) => (input.value = ""))
+}
