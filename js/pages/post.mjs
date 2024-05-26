@@ -34,7 +34,6 @@ async function getPost() {
 getPost()
 
 async function populatePost(data) {
-  console.log(data.body)
   const postDate = formateDateTime(data.created) // Format date to readable
   const postBody = data.body.split("\n") // Create array of paragraphs
   const otherPosts = await getAllPosts({ // Get more posts from the author
@@ -59,7 +58,7 @@ async function populatePost(data) {
   authorTitleEl.textContent = data.author.email
   authorTitleEl.href = `mailto:${data.author.email}`
   authorTitleEl.setAttribute("title", data.author.email) // Set the email in the title attribute in case it overflows
-  headtitleEl.textContent = data.title
+  headtitleEl.textContent = data.title // Update title in head for SEO
 
   if (auth) { // If user has auth, update href for edit button
     hrefEl.innerHTML = `Edit <i class="fa-regular fa-pen-to-square"></i>`
