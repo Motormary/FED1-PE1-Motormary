@@ -48,6 +48,7 @@ paginationBtns.forEach((btn) => {
   btn.addEventListener("click", () => handleQueryParams("page", selectedPage))
 })
 
+// Updates/deletes the URL params
 export function handleQueryParams(key, value) {
   if (key && !value) {
     url.delete(key)
