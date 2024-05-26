@@ -1,3 +1,4 @@
+// Formats given date to readable format
 export default function formateDateTime(dateTime) {
   const date = new Date(dateTime)
 

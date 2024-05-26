@@ -1,3 +1,4 @@
+// Formats data for registration form
 export default function formatRegData(data) {
     const formObject = Object.fromEntries(data.entries())
   

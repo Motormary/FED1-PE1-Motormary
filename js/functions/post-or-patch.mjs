@@ -6,7 +6,7 @@ import { POSTS_URL } from "../urls.mjs"
 
 export async function postOrPatchPost(event, method, author, postId) {
   event.preventDefault()
-  if (!author) throw new Error("Author missing")
+  if (!author) throw new Error("Author missing") // Check for author before getting access token
   const accessToken = getAuthField("accessToken")
   if (!accessToken) throw new Error("Auth is missing")
   removeErrors()
@@ -45,14 +45,15 @@ export async function postOrPatchPost(event, method, author, postId) {
   }
 }
 
+// Create and format post object to correct format
 export function formatPostData(formData) {
   const formObject = Object.fromEntries(formData)
 
-  // Create array of tags + remove undefined/white spaces from array
+  // Create array of tags
   formObject.tags = formObject.tags
     .split(",")
-    .map((tag) => tag.trim())
-    .filter((tag) => tag !== "")
+    .map((tag) => tag.trim()) // Remove white spaces
+    .filter((tag) => tag !== "") // Remove any empty values
 
   if (formObject.media) {
     formObject.media = {

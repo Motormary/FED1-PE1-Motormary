@@ -1,5 +1,5 @@
 export default function removeErrors() {
-    // Removes red color from label
+    // Removes red color class from label
     const errors = document.querySelectorAll(".error")
     if (errors) errors.forEach((error) => error.classList.remove("error"))
     

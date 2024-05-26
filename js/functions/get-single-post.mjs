@@ -4,8 +4,7 @@ import { createErrorPage } from "./404.mjs"
 export default async function getSinglePost(author, postId) {
   try {
     const response = await fetch(`${POSTS_URL}${author}/${postId}`, {
-      method: "GET",
-      cache: "no-store"
+      method: "GET"
     })
 
     const responseData = await response.json()

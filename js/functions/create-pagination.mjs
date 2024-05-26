@@ -2,10 +2,11 @@ import { handleQueryParams } from "../index.mjs"
 
 const paginationContainer = document.querySelector("div.pagination")
 
+// Create buttons for pagination
 export default function createPagination(data) {
     if (!data) return
   
-    const { pageCount, currentPage } = data
+    const { pageCount, currentPage } = data // Extract pageCount and currentPage from data
   
     if (pageCount > 1) {
       // Create "First Page" button
@@ -14,6 +15,7 @@ export default function createPagination(data) {
       firstPageBtn.id = "first-page"
       firstPageBtn.textContent = "First Page"
       firstPageBtn.addEventListener("click", () => handleQueryParams("page", 1))
+      // ------------------------------
   
       // Create "Last Page" button
       const lastPageBtn = document.createElement("button")
@@ -23,11 +25,13 @@ export default function createPagination(data) {
       lastPageBtn.addEventListener("click", () =>
         handleQueryParams("page", pageCount)
       )
+      // ------------------------------
   
-      // Replace children with first and last page buttons
-      paginationContainer.replaceChildren(firstPageBtn, lastPageBtn)
+      paginationContainer.replaceChildren(firstPageBtn, lastPageBtn) // Replace the current pagination buttons
   
-      //** Mr.Jippity (GPT) helped me improve this with the Math syntaxes - Makes sure the selected page stays in center if possible */
+      //** Mr.Jippity (GPT) helped me improve this with the Math syntaxes */
+      // Calculation which tries to make sure the selected pagination button stays in center of the row
+      // Up to a max of 5 buttons
       let startPage = Math.max(1, currentPage - 2)
       let endPage = Math.min(pageCount, currentPage + 2)
   
@@ -44,15 +48,15 @@ export default function createPagination(data) {
       for (let i = startPage; i <= endPage; i++) {
         const btnEl = document.createElement("button")
         btnEl.classList.add("pagination-btn")
-        if (i === currentPage || !currentPage) {
+        if (i === currentPage) {
           btnEl.classList.add("active") // Highlight current page button
         }
         btnEl.textContent = i
-        btnEl.addEventListener("click", () => handleQueryParams("page", i)) // Update URL parameters
+        btnEl.addEventListener("click", () => handleQueryParams("page", i)) // Update "page" query with button value
         lastPageBtn.before(btnEl)
       }
     } else {
-      paginationContainer.innerHTML = ""
+      paginationContainer.innerHTML = "" // If only 1 page, remove pagination
     }
   }
   

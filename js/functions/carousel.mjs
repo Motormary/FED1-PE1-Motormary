@@ -20,11 +20,15 @@ async function getPostsForCarousel() {
 
     if (response?.data[0]?.id) {
       response.data.forEach((post, index) => {
-        const bodySnippet = post?.body?.split(".") || [""]
+        const bodySnippet = post?.body?.split(".") || [""] // Create snippet from the first line in body - OR a failsafe array with undefined to avoid error
+
+        // Set banner as background image to make it easy for placing text above
         imageHrefEl[index].style = `
         background-image: url("${post.media.url}");
         `
         imageHrefEl[index].href = `/post/index.html?author=${post.author.name}&postId=${post.id}`
+
+        // Set title and body snippet
         bannerTitleEl[index].textContent = post.title
         bannerBodyEl[index].textContent = bodySnippet[0]
       })
@@ -35,7 +39,7 @@ getPostsForCarousel()
 
 function setIndexColor() {
   bannerDot.forEach((dot, index) => {
-    if (index === currentIndex) dot.style.color = "#555"
+    if (index === currentIndex) dot.style.color = "#555" // Create icon elements which highlights if it's the same index as banner showing
     else dot.style.color = "#67676755"
   })
 }
@@ -65,6 +69,7 @@ next.addEventListener("click", handleNext)
 
 prev.addEventListener("click", handlePrev)
 
+// Function to handle auto slide through the banners by calling HandleNext and then itself
 function autoPlay() {
   setTimeout(() => {
     handleNext()

@@ -1,3 +1,4 @@
+// Maps over errors from backend and updates the input-label class and error element which displays the given error message
 export default function handleErrors(data) {
     data.errors.forEach((error) => {
       const errorMessage = error.message

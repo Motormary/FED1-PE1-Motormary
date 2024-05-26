@@ -1,6 +1,7 @@
 const containerEl = document.querySelector("div.thumbnails-container")
 import formateDateTime from "./format-date.mjs"
 
+// Creates thumbnail elements for blog feed
 export default function createThumbnails(data) {
   let thumbnailHtml = ""
   data.forEach((post) => {

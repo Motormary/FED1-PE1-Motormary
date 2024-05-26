@@ -1,3 +1,4 @@
+// Check if passwords match when registering for account - else create error message
 export default function validatePassword(formData) {
     const password1 = formData.get("password")
     const password2 = formData.get("confirm")

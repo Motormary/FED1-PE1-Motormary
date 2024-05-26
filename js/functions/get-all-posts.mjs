@@ -1,6 +1,7 @@
 import { POSTS_URL } from "../urls.mjs"
 import { createErrorPage } from "./404.mjs"
 
+// Returns all post with the given filters
 export async function getAllPosts({author, tag, page, limit, sort}) {
   if (!author) throw new Error("Author param is missing")
 
