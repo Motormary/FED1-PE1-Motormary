@@ -40,6 +40,7 @@ async function populatePost(data) {
     limit: 4
   })
 
+
   let newBody = ""
   postBody.forEach((paragraph) => {
     if (paragraph) return (newBody += `<p>${paragraph}</p>`)
@@ -59,7 +60,8 @@ async function populatePost(data) {
     hrefEl.href = `/post/edit.html?author=${data.author.name}&postId=${data.id}`
   } else hrefEl.remove()
 
-  if (otherPosts && otherPosts.data.length > 2) {
+  if (otherPosts && otherPosts.data.length > 1) {
+
     populateOtherPosts(otherPosts.data, data.id)
   }
 }
