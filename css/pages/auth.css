@@ -15,7 +15,7 @@ main {
   opacity: 0;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
-  animation-name: fade;
+  animation-name: fade; /* Fade in animation for forms */
 }
 
 .auth-header {
@@ -94,7 +94,7 @@ input[type="checkbox"] {
   color: black;
 }
 
-@keyframes fade {
+@keyframes fade { 
     100% {
         opacity: 1;
     }

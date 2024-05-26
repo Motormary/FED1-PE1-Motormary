@@ -21,11 +21,11 @@
 
 .banner {
   width: 100%;
-  background-image: url("/assets/images/filler.png");
+  background-image: url("/assets/images/filler.png"); /* Avoid layout shift with a filler image */
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
-  animation: bannerbg 30s infinite alternate linear;
+  animation: bannerbg 30s infinite alternate linear; /* Slide the banner upwards */
 }
 
 @keyframes bannerbg {
@@ -50,6 +50,7 @@
   border-radius: 20px;
 }
 
+/* Remove the body text from banner at smaller screens */
 @media (max-width: 1100px) {
   .banner-body {
     display: none;
@@ -191,6 +192,7 @@
   border-radius: 6px;
 }
 
+/* Container for thumbnail border glow */
 .thumbnail-border {
   position: absolute;
   height: 100%;
@@ -318,6 +320,7 @@
   }
 }
 
+/* Spinning border animation for current page button */
 .active::after {
   position: absolute;
   content: "";

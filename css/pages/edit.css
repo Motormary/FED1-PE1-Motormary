@@ -206,6 +206,7 @@ main {
   margin-top: 1.5rem;
 }
 
+/* Place search icon with css instead of html */
 .edit-search input {
   display: block;
   background-image: url("/assets/icons/search.svg");

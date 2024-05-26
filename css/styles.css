@@ -76,7 +76,7 @@ select * {
   border: 1px solid var(--border);
 }
 
-/* Control for label+input */
+/* Keeps label+input in columns */
 .input-container {
   display: flex;
   flex: 1;
@@ -150,5 +150,3 @@ textarea:focus {
 .hidden {
   visibility: hidden;
 }
-
-/* * { outline: solid 1px rgba(255, 0, 0, 0.171); } */
