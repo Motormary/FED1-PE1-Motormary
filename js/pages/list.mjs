@@ -19,7 +19,10 @@ searchEl.addEventListener("keyup", () => {
 })
 
 async function getPostsForEdit() {
-  const posts = await getAllPosts(auth.name, page)
+  const posts = await getAllPosts({
+    author: auth.name, 
+    page: page
+  })
   if (posts.data[0]?.id) {
     allPostsEl.innerHTML = ""
     filterPostsToEdit(posts.data)

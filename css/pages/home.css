@@ -278,13 +278,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.pagination > #load-more {
-  padding: 0.5rem 1rem;
-  background-color: var(--button-primary);
-  border-radius: 6px;
-  color: #fff;
+.pagination-btn {
+  padding: 0.5rem;
+  background-color: #fff;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
+}
+
+#load-more:hover {
+  background-color: var(--primary-hover);
+}
+
+.active:not(#first-page),
+.active:not(#last-page) {
+  box-shadow: 1px 1px 5px var(--border);
+  border: 2px solid var(--border);
 }

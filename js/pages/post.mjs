@@ -35,7 +35,11 @@ getPost()
 async function populatePost(data) {
   const postDate = formateDateTime(data.created)
   const postBody = data.body.split("\n")
-  const otherPosts = await getAllPosts(data.author.name, 4)
+  const otherPosts = await getAllPosts({
+    author: data.author.name,
+    limit: 4
+  })
+
   let newBody = ""
   postBody.forEach((paragraph) => {
     if (paragraph) return (newBody += `<p>${paragraph}</p>`)
@@ -55,8 +59,8 @@ async function populatePost(data) {
     hrefEl.href = `/post/edit.html?author=${data.author.name}&postId=${data.id}`
   } else hrefEl.remove()
 
-  if (otherPosts && otherPosts.length > 2) {
-    populateOtherPosts(otherPosts, data.id)
+  if (otherPosts && otherPosts.data.length > 2) {
+    populateOtherPosts(otherPosts.data, data.id)
   }
 }
 
@@ -65,13 +69,14 @@ function populateOtherPosts(otherPosts, currentPostId) {
   let posts = ""
 
   otherPosts.forEach((post) => {
+    const bodySnippet = post.body.split(".") || [post.body.slice(0, 25)] || [""]
     if (post.id !== currentPostId)
       // Avoid showing current post as "other"
       return (posts += `
             <a href="/post/?author=${post.author.name}&postId=${post.id}">
                 <p class="other-title">${post.title}</p>
                 <p class="description other-body">${
-                  post.body ? post.body.slice(0, 25) + "..." : ""
+                  bodySnippet[0]
                 }</p>
             </a>
             `)

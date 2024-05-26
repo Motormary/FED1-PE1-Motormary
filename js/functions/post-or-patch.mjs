@@ -13,6 +13,8 @@ export async function postOrPatchPost(event, method, author, postId) {
   const formData = new FormData(event.target)
 
   const formObject = formatPostData(formData)
+  formObject.tags = formObject.tags.map(tag => tag.toUpperCase()) // Failsafe - because backend tag filtering is apparently case sensitive.
+  
   try {
     const response = await fetch(
       `${POSTS_URL}${author}${postId ? "/" + postId : ""}`,

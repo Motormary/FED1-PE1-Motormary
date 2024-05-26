@@ -13,7 +13,10 @@ let currentIndex = 0
 let prevIndex
 
 async function getPostsForCarousel() {
-    const response = await getAllPosts("mkm", 1, 3)
+    const response = await getAllPosts({
+      author: "mkm",
+      limit: 3
+    })
 
     if (response?.data[0]?.id) {
       response.data.forEach((post, index) => {

@@ -1,7 +1,6 @@
 import { getAllPosts } from "../js/functions/get-all-posts.mjs"
-import formatPostsByAge from "./functions/format-array-by-date.mjs"
-import formateDateTime from "./functions/format-date.mjs"
-import borderEffect from "./functions/thumbnail-effect.mjs"
+import createPagination from "./functions/create-pagination.mjs"
+import createThumbnails from "./functions/create-thumbnails.mjs"
 
 const containerEl = document.querySelector("div.thumbnails-container")
 const searchEl = document.querySelector("input#search-posts")
@@ -9,7 +8,7 @@ const searchIcon = document.querySelector("i.search-icon")
 const filterEl = document.querySelectorAll("button.feed")
 const selectEl = document.querySelector("select.filter-select")
 const clearFilterEL = document.querySelector("button#clear-filters")
-const loadMoreBtn = document.querySelector("button#load-more")
+const paginationBtns = document.querySelectorAll("button.pagination-btn")
 let url = new URLSearchParams(window.location.search)
 
 searchIcon.addEventListener("click", () =>
@@ -33,8 +32,8 @@ searchEl.addEventListener("keyup", (e) => {
   }
 })
 
-selectEl.addEventListener("change", () =>
-  handleQueryParams("order", selectEl.value.toLowerCase())
+selectEl.addEventListener("change", (e) =>
+  handleQueryParams("order", e.target.value)
 )
 
 filterEl.forEach((filter) => {
@@ -42,26 +41,21 @@ filterEl.forEach((filter) => {
   filter.addEventListener("click", () => handleQueryParams("tag", value))
 })
 
-clearFilterEL.addEventListener("click", () => {
-  let params = new URLSearchParams(window.location.search)
-  params.forEach((value, key) => url.delete(key))
-  searchEl.value = ""
-  selectEl.value = "sortby"
-  handleUpdateUrl()
-  loadMoreBtn.classList.remove("hidden")
+clearFilterEL.addEventListener("click", handleClearFilters)
+
+paginationBtns.forEach((btn) => {
+  const selectedPage = btn.getAttribute("data-value")
+  btn.addEventListener("click", () => handleQueryParams("page", selectedPage))
 })
 
-
-loadMoreBtn.addEventListener("click", () => {
-  const sizeValue = url.get("size") || 12
-  handleQueryParams("size", Number(sizeValue) + 12)
-})
-
-function handleQueryParams(key, value) {
+export function handleQueryParams(key, value) {
   if (key && !value) {
     url.delete(key)
   } else {
     url.set(key, value)
+  }
+  if (key !== "page") {
+    url.delete("page")
   }
   handleUpdateUrl()
 }
@@ -70,59 +64,39 @@ function handleUpdateUrl() {
   const newUrl = window.location.pathname + "?" + url.toString()
   history.pushState(null, "", newUrl)
 
-  populatePosts()
+  getAndCreatePosts()
 }
 
-async function populatePosts() {
+async function getAndCreatePosts() {
   const page = url.get("page")
   const order = url.get("order")
-  const size = url.get("size")
-  
-  const response = await getAllPosts(
-    "mkm",
-    page ? page : 1,
-    size ? size : 12,
-    order ? order : "desc"
-  )
-  if (response?.data.length) {
-    handleFilterData(response.data)
-    handleMorePosts(response)
-    if (url.size) clearFilterEL.style = "visibility: visible;"
-    else clearFilterEL.style = "visibility: hidden;"
+  const tag = url.get("tag")
+  const search = url.get("search")
+
+  const response = await getAllPosts({
+    author: "mkm",
+    tag: tag ? tag.toUpperCase() : "",
+    page: page ? page : 1,
+    limit: search ? "" : 12,
+    sort: order ? order : "desc",
+  })
+  if (response?.data?.length) {
+    handleFilterData(response)
+    checkIfFilters()
+    createPagination(response.meta)
   } else containerEl.innerHTML = `<p>There are no posts to display</p>`
 }
 
-function handleFilterData(data) {
-  const tagQuery = url.get("tag")
+function handleFilterData(posts) {
   const searchQuery = url.get("search")
-  let filteredData = data
-  if (tagQuery || searchQuery) {
-    filteredData = data.filter((post) => {
-      if (searchQuery && tagQuery) {
-        return (
-          // Returns if both title and tag queries match
-          (post.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-            post.tags.some((tag) =>
-              tag.toLowerCase().includes(tagQuery.toLowerCase())
-            )) || // OR
-            // Returns if both body and tag queries match
-          (post.body.toLowerCase().includes(searchQuery.toLowerCase()) &&
-            post.tags.some((tag) =>
-              tag.toLowerCase().includes(tagQuery.toLowerCase())
-            ))
-        )
-      } else if (searchQuery && !tagQuery) {
-        return (
-          // Returns if either title or body matches
-          post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          post.body.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      } else if (tagQuery && !searchQuery) {
-        // Returns tag queries
-        return post.tags.some((tag) =>
-          tag.toLowerCase().includes(tagQuery.toLowerCase())
-        )
-      }
+  let filteredData = posts.data
+  if (searchQuery) {
+    filteredData = posts.data.filter((post) => {
+      return (
+        // Returns if either title or body matches
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.body.toLowerCase().includes(searchQuery.toLowerCase())
+      )
     })
   }
 
@@ -133,48 +107,21 @@ function handleFilterData(data) {
   }
 }
 
-function handleMorePosts(data) {
-  console.log("asd")
-  if (!data.meta.nextPage) {
-    loadMoreBtn.classList.add("hidden")
+getAndCreatePosts()
+
+function handleClearFilters() {
+  let params = new URLSearchParams(window.location.search)
+  params.forEach((value, key) => url.delete(key))
+  searchEl.value = ""
+  selectEl.value = "sortby"
+  handleUpdateUrl()
+}
+
+function checkIfFilters() {
+  if (url.size) {
+    clearFilterEL.style = "visibility: visible;"
+  } else {
+    clearFilterEL.style = "visibility: hidden;"
   }
 }
 
-populatePosts()
-
-function createThumbnails(data) {
-  let thumbnailHtml = ""
-  data.forEach((post, index) => {
-    thumbnailHtml += `
-    <div class="thumbnail">
-      <div class="thumbnail-border"></div>
-              <a href="/post/index.html?author=${post.author.name}&postId=${
-        post.id
-      }">
-                  <img src="${post.media.url}" alt="${
-        post?.media?.url || "Post Banner"
-      }">
-              </a>
-          <div class="thumbnail-text">
-              <span>${post.tags[0]}</span>
-              <a href="/post/index.html?author=${post.author.name}&postId=${
-        post.id
-      }">
-                  <p class="thumbnail-title">${post.title}</p>
-              </a>
-              <div class="thumbnail-creator">
-                  <div class="creator">
-                      <img class="creator-avatar" src="${
-                        post.author.avatar.url
-                      }" alt="${post.author.avatar.alt}">
-                      <p>${post.author.name}</p>
-                  </div>
-                  <p>${formateDateTime(post.created)}</p>
-              </div>
-        </div>
-    </div>
-
-        `
-    containerEl.innerHTML = thumbnailHtml
-  })
-}

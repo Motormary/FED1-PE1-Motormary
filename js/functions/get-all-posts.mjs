@@ -1,14 +1,14 @@
 import { POSTS_URL } from "../urls.mjs"
 import { createErrorPage } from "./404.mjs"
 
-export async function getAllPosts(author, page, limit, sort, tag) {
+export async function getAllPosts({author, tag, page, limit, sort}) {
   if (!author) throw new Error("Author param is missing")
 
   try {
     const response = await fetch(
-      `${POSTS_URL}${author}?${page ? "page=" + page : ""}${
+      `${POSTS_URL}${author}?${tag ? "_tag=" + tag : ""}${page ? "&page=" + page : ""}${
         limit ? "&limit=" + limit : ""
-      }${sort ? "&sortOrder=" + sort : ""}${tag ? "&my_tag=" + tag : ""}`,
+      }${sort ? "&sortOrder=" + sort : ""}`,
       {
         method: "GET",
       }
@@ -20,7 +20,6 @@ export async function getAllPosts(author, page, limit, sort, tag) {
       const data = responseData
       return data
     } else {
-      console.error(responseData)
       createErrorPage(responseData)
       return false
     }
