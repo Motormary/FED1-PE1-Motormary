@@ -8,6 +8,7 @@ import { REGISTER_URL } from "../urls.mjs"
 
 const auth = getAuth()
 
+// Redirect user to login if no auth
 if (!auth) window.location.replace("/account/login.html")
 
 const registerForm = document.querySelector("form#registerForm")
@@ -23,7 +24,7 @@ async function registerUser(event) {
 
   if (!isPasswordValid) return
 
-  const formObject = formatRegData(formData) // Format nested data: {}
+  const formObject = formatRegData(formData) // Format the formData to the correct format, e.g nested objects
 
   try {
     const response = await fetch(REGISTER_URL, {
