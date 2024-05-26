@@ -22,6 +22,7 @@ if (!auth) {
   window.location.replace("/account/login.html")
 }
 
+// Listen for submit event
 formEl.addEventListener("submit", (e) => {
   postOrPatchPost(e, "PUT", author, postId)
 })
@@ -35,12 +36,12 @@ backBtn.addEventListener("click", () => window.history.back())
 
 
 async function getEditPost() {
-  if (author && postId) {
-    const singlePost = await getSinglePost(author, postId)
-    if (singlePost.data?.id) {
-      populateEditFields(singlePost.data)
-    } else createErrorPage(singlePost)
-  } else createErrorPage()
+  if (author && postId) { // Check for query params
+    const postData = await getSinglePost(author, postId)
+    if (postData.data?.id) {
+      populateEditFields(postData.data)
+    } else createErrorPage(postData) // Create error with message from backend
+  } else createErrorPage() // Create 404 error
 }
 
 getEditPost()
@@ -49,13 +50,13 @@ function populateEditFields(data) {
   titleEl.value = data.title
   bodyEl.value = data.body
   mediaEl.value = data.media.url
-  tagsEl.value = data.tags.toString().replaceAll(",", ", ")
+  tagsEl.value = data.tags.toString().replaceAll(",", ", ") // Create space between the tags for readability
 }
 
 async function handleDeletePost() {
   const response = await deletePost(author, postId)
   if (response) {
-    window.location.href = "/post/list.html"
+    window.location.href = "/post/list.html" // Redirect back to post list if success
   } else {
     showToast("Something went wrong, try again or contact support")
   }
