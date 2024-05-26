@@ -34,6 +34,7 @@ async function getPost() {
 getPost()
 
 async function populatePost(data) {
+  console.log(data.body)
   const postDate = formateDateTime(data.created) // Format date to readable
   const postBody = data.body.split("\n") // Create array of paragraphs
   const otherPosts = await getAllPosts({ // Get more posts from the author
@@ -43,6 +44,7 @@ async function populatePost(data) {
 
   let newBody = ""
   postBody.forEach((paragraph) => {
+    // Check for value
     if (paragraph) return (newBody += `<p>${paragraph}</p>`) // Put each body-paragraph in it's own paragraph-element and return as html
   })
 
@@ -60,6 +62,7 @@ async function populatePost(data) {
   headtitleEl.textContent = data.title
 
   if (auth) { // If user has auth, update href for edit button
+    hrefEl.innerHTML = `Edit <i class="fa-regular fa-pen-to-square"></i>`
     hrefEl.href = `/post/edit.html?author=${data.author.name}&postId=${data.id}`
   } else hrefEl.remove()
 
