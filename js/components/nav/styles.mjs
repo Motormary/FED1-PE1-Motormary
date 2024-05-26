@@ -1,5 +1,6 @@
+// CSS for navbar
+
 export const contentStyle = `
-// * {outline: solid 1px red;}
 .nav-content {
   box-sizing: border-box;
   display: flex;
@@ -111,7 +112,7 @@ a {
     opacity: 1;
 }
 
-/* Make dropdown menu accessible (except logged in username) + color selection */
+/* Make dropdown menu accessible (except logged in username) + colored selection */
 .dropdown-content > *:hover:not(:first-child),
 .dropdown-content > *:focus-visible:not(:first-child) {
     outline: none;

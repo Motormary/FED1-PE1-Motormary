@@ -5,6 +5,7 @@ import { contentStyle, navStyle } from "./styles.mjs"
 const template = document.createElement("template")
 const templateStyle = document.createElement("style")
 templateStyle.innerHTML = contentStyle
+// Html for navbar
 template.innerHTML = `
 <div class="nav-content">
     <div class="logo-container">
@@ -22,6 +23,7 @@ template.innerHTML = `
   </div>
 `
 
+// Create web component for navbar
 class CustomNav extends HTMLElement {
   constructor() {
     super()
@@ -31,27 +33,15 @@ class CustomNav extends HTMLElement {
     this.style = navStyle
 
     this.shadowRoot.append(templateStyle, template.content.cloneNode(true))
-
-    this.updateCartLength()
-
-    window.addEventListener("updateCart", this.updateCartLength.bind(this))
   }
 
+  // Check if the user has auth when component loads
   connectedCallback() {
     const navLinks = this.shadowRoot.querySelector("ul")
 
     const isAuthed = getAuth()
 
-    if (isAuthed) createAuthedNav(navLinks)
-
-  }
-
-  updateCartLength() {
-    // Called whenever a product is added to the cart.
-  }
-
-  diconnectedCallback() {
-    window.removeEventListener("updateCart", this.updateCartLength.bind(this))
+    if (isAuthed) createAuthedNav(navLinks) // Update navbar html if user is authed
   }
 }
 

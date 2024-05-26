@@ -5,6 +5,7 @@ footerTemplate.innerHTML = `
 </footer>
 `
 
+// Custom web component for footer
 class customFooter extends HTMLElement {
   constructor() {
     super()
@@ -13,6 +14,7 @@ class customFooter extends HTMLElement {
 
     this.style = `
     position: absolute;
+    max-height: 40px;
     width: 100%;
     bottom: 0;
     border-top: 1px solid #6767;
