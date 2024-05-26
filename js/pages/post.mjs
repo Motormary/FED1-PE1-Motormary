@@ -14,6 +14,7 @@ const authorNameEl = document.querySelector("p.author-name")
 const authorTitleEl = document.querySelector("p.author-title")
 const morePostContainerEl = document.querySelector("div.other-posts")
 const morePostsEl = document.querySelector("div.more-container")
+const headtitleEl = document.querySelector("title")
 const auth = getAuth()
 
 async function getPost() {
@@ -40,7 +41,6 @@ async function populatePost(data) {
     limit: 4
   })
 
-
   let newBody = ""
   postBody.forEach((paragraph) => {
     if (paragraph) return (newBody += `<p>${paragraph}</p>`)
@@ -55,6 +55,7 @@ async function populatePost(data) {
   authorAvatarEl.src = data.author.avatar.url
   authorNameEl.textContent = data.author.name
   authorTitleEl.textContent = "Manager"
+  headtitleEl.textContent = data.title
 
   if (auth) {
     hrefEl.href = `/post/edit.html?author=${data.author.name}&postId=${data.id}`

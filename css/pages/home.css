@@ -296,14 +296,10 @@
   line-height: 0;
 }
 
-#load-more:hover {
-  background-color: var(--primary-hover);
+#first-page,
+#last-page {
+  line-height: unset;
 }
-
-/* .active {
-  box-shadow: 1px 1px 5px var(--button-primary);
-  border: solid 1px var(--border);
-} */
 
 .active::after {
   position: absolute;
