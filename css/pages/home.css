@@ -21,7 +21,7 @@
 
 .banner {
   width: 100%;
-  background-image: url("/assets/images/b1.png");
+  background-image: url("/assets/images/filler.png");
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -232,9 +232,9 @@
 .thumbnail img {
   height: 10rem;
   width: 100%;
+  src: url("/assets/images/filler.png");
   object-fit: cover;
   border-radius: 4px 4px 0 0;
-  src: url("/assets/images/filler.png");
 }
 
 .thumbnail-text {
