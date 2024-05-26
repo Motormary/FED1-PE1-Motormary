@@ -1,3 +1,4 @@
+// Get saved auth from local/session storage
 export function getAuth() {
   let auth = localStorage.hvlAuth || sessionStorage.hvlAuth
 
@@ -7,6 +8,7 @@ export function getAuth() {
   } else return false
 }
 
+// Get a specific value from the auth, e.g "accessToken"
 export function getAuthField(field) {
   const data = getAuth()
 
@@ -15,6 +17,7 @@ export function getAuthField(field) {
   return requestedField
 }
 
+// Sign the user out by clearing auth from local/session storage
 export function logout() {
   localStorage.clear("hvlAuth")
   sessionStorage.clear("hvlAuth")
