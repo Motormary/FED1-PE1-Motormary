@@ -301,6 +301,23 @@
   line-height: unset;
 }
 
+/* Allows use of screens down to ~255px without breaking UI */
+/* Hides the pagination buttons if it's not a sibling of the .active page  */
+@media (max-width: 350px) {
+  .pagination-btn {
+    display: none;
+  }
+  .active,
+  .active + button,
+  .pagination-btn:has(+ .active):not(#first-page) {
+    display: inline-block;
+  }
+  #first-page,
+  #last-page {
+    display: inline-block;
+  }
+}
+
 .active::after {
   position: absolute;
   content: "";
