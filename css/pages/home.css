@@ -234,6 +234,7 @@
   width: 100%;
   object-fit: cover;
   border-radius: 4px 4px 0 0;
+  src: url("/assets/images/filler.png");
 }
 
 .thumbnail-text {
@@ -310,10 +311,10 @@
   border-radius: 50%;
   top: 50%;
   left: 50%;
-  border-right: solid 2px var(--button-primary);
+  border-top: solid 2px var(--button-primary);
   filter: blur(1px);
   transform: translate(-50%, -50%) rotate(0deg);
-  animation: borderspin 3s linear infinite;
+  animation: borderspin 5s linear infinite;
 }
 
 @keyframes borderspin {

@@ -10,7 +10,7 @@ export default function createThumbnails(data) {
       <div class="thumbnail">
         <div class="thumbnail-border"></div>
             <a href="/post/index.html?author=${post.author.name}&postId=${post.id}">
-                <img src="${post.media.url}" alt="${post?.media?.url || "Post Banner"}">
+                <img src="${post.media.url}" alt="banner">
             </a>
             <div class="thumbnail-text">
                 <span>${post.tags[0]}</span>
@@ -19,7 +19,7 @@ export default function createThumbnails(data) {
                 </a>
                 <div class="thumbnail-creator">
                     <div class="creator">
-                        <img class="creator-avatar" src="${post.author.avatar.url}" alt="${post.author.avatar.alt}">
+                        <img class="creator-avatar" src="${post.author.avatar.url}" alt="avatar">
                         <p>${post.author.name}</p>
                     </div>
                     <p>${date}</p>

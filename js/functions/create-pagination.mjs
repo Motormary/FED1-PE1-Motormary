@@ -27,7 +27,7 @@ export default function createPagination(data) {
       // Replace children with first and last page buttons
       paginationContainer.replaceChildren(firstPageBtn, lastPageBtn)
   
-      //** Mr.Jippity (GPT) helped me rough out the calculation on this one - Makes sure the selected page stays in center if possible */
+      //** Mr.Jippity (GPT) helped me improve this with the Math syntaxes - Makes sure the selected page stays in center if possible */
       let startPage = Math.max(1, currentPage - 2)
       let endPage = Math.min(pageCount, currentPage + 2)
   
