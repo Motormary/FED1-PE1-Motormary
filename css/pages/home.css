@@ -25,7 +25,7 @@
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
-  animation: bannerbg 20s infinite alternate linear;
+  animation: bannerbg 30s infinite alternate linear;
 }
 
 @keyframes bannerbg {
@@ -40,6 +40,8 @@
   color: #fff;
   text-shadow: 1px 1px 5px rgb(0, 0, 0);
   padding: 1rem;
+  backdrop-filter: blur(1px);
+  background-color: rgba(0, 0, 0, 0.308);
 }
 
 .banner-title-container > * {
@@ -167,7 +169,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .banner > * {
     max-width: 350px;
   }

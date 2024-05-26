@@ -69,7 +69,7 @@ function autoPlay() {
   setTimeout(() => {
     handleNext()
     autoPlay()
-  }, 6000)
+  }, 10000)
 }
 
 autoPlay()
