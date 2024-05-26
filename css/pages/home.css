@@ -189,25 +189,29 @@
   border-radius: 6px;
 }
 
-.thumbnail-border{
+.thumbnail-border {
   position: absolute;
   height: 100%;
   width: 100%;
   filter: blur(10px);
   z-index: -1;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .thumbnail-border:before {
   position: absolute;
-	width: 1500px;
-	height: 1500px;
-  content: '';
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) rotate(0deg);
-	background-image: conic-gradient(rgba(0, 0, 0, 0), #198ded, rgba(0,0,0,0) 40%);
-	animation: glow 3s linear infinite;
+  width: 1500px;
+  height: 1500px;
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background-image: conic-gradient(
+    rgba(0, 0, 0, 0),
+    #198ded,
+    rgba(0, 0, 0, 0) 40%
+  );
+  animation: glow 3s linear infinite;
 }
 
 .thumbnail-border {
@@ -217,15 +221,13 @@
 .thumbnail:hover .thumbnail-border,
 .thumbnail:focus-within .thumbnail-border {
   display: block;
-} 
+}
 
 @keyframes glow {
-	100% {
-		transform: translate(-50%, -50%) rotate(360deg);
-	}
-} 
-
-
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 
 .thumbnail img {
   height: 10rem;
@@ -282,19 +284,40 @@
 }
 
 .pagination-btn {
-  padding: 0.5rem;
+  position: relative;
+  padding: 1rem 0.75rem;
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
+  line-height: 0;
 }
 
 #load-more:hover {
   background-color: var(--primary-hover);
 }
 
-.active:not(#first-page),
-.active:not(#last-page) {
-  box-shadow: 1px 1px 5px var(--border);
-  border: 2px solid var(--border);
+/* .active {
+  box-shadow: 1px 1px 5px var(--button-primary);
+  border: solid 1px var(--border);
+} */
+
+.active::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  border-right: solid 2px var(--button-primary);
+  filter: blur(1px);
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: borderspin 3s linear infinite;
+}
+
+@keyframes borderspin {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
