@@ -108,9 +108,9 @@ async function getAndCreatePosts() {
   })
   if (response?.data?.length) { // Check if there are any posts in response
     handleFilterData(response)
-    checkIfFilters()
     createPagination(response.meta)
   } else containerEl.innerHTML = `<p>There are no posts to display</p>` // If there are no posts in the response, update UI with "No posts"
+  checkIfFilters() // Check for filters
 }
 
 // Filter posts through search query
