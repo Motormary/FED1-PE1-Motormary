@@ -48,7 +48,7 @@ export default function createPagination(data) {
           btnEl.classList.add("active") // Highlight current page button
         }
         btnEl.textContent = i
-        btnEl.addEventListener("click", () => handleQueryParams("page", i))
+        btnEl.addEventListener("click", () => handleQueryParams("page", i)) // Update URL parameters
         lastPageBtn.before(btnEl)
       }
     } else {
