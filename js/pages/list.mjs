@@ -18,13 +18,14 @@ searchEl.addEventListener("keyup", () => {
   getPostsForEdit()
 })
 
+// Get all posts of the logged in user
 async function getPostsForEdit() {
   const posts = await getAllPosts({
     author: auth.name, 
     page: page
   })
   if (posts.data[0]?.id) {
-    allPostsEl.innerHTML = ""
+    allPostsEl.innerHTML = "" // Reset html when searching
     filterPostsToEdit(posts.data)
   } else {
     createEmptyPosts()
@@ -33,6 +34,7 @@ async function getPostsForEdit() {
 
 getPostsForEdit()
 
+// Filter posts through search query
 function filterPostsToEdit(data) {
   const searchValue = searchEl.value.toLowerCase()
 
@@ -49,6 +51,7 @@ function filterPostsToEdit(data) {
   createPostsToEdit(filteredData)
 }
 
+// Create post elements
 function createPostsToEdit(data) {
   data.forEach((post) => {
     const postContainer = document.createElement("div")
@@ -126,6 +129,7 @@ function createPostsToEdit(data) {
     deleteicon.classList.add("fa-regular", "fa-trash-can")
     deleteInfoContainer.classList.add("info-text")
     deleteInfoText.textContent = "Delete Post"
+    // ---------------------------------------
 
     deleteAction.appendChild(deleteicon)
     deleteInfoContainer.appendChild(deleteInfoText)
@@ -137,23 +141,26 @@ function createPostsToEdit(data) {
   })
 }
 
+// Handle delete post
 function handleDeletePost(post, postContainer) {
   const response = deletePost(post.author.name, post.id)
   if (response) {
     showToast("Post deleted")
-    postContainer.remove()
-    checkPostsLength()
+    postContainer.remove() // Remove post from html
+    checkPostsLength() // Check if it was the last post deleted
   } else {
     showToast("Something went wrong, try again or contact support")
   }
 }
 
+// Check if any posts in array
 function checkPostsLength() {
   const posts = document.querySelectorAll(".post-to-edit")
 
   if (!posts.length) createEmptyPosts()
 }
 
+// Create message if no posts to display
 function createEmptyPosts() {
   allPostsEl.innerHTML = `
     <div style="text-align: center; margin-top: 15%; line-height: 2rem;">    
