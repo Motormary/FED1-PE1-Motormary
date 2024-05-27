@@ -18,7 +18,7 @@ imageHrefEl.forEach((el) =>
 
 let touchData = {}
 
-// Change banner index on mobile touch event
+// Change banner index on mobile if user swipes
 
 // Save touch position at start of touch
 function handleTouchStart(event) {
