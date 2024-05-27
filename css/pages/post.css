@@ -25,6 +25,11 @@
   grid-column-end: -1;
 }
 
+#edit-ref,
+.date-type {
+  line-height: 1.5rem;
+}
+
 .post-text {
   grid-column-start: 1;
   grid-column-end: -2;

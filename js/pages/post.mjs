@@ -49,9 +49,7 @@ async function populatePost(data) {
 
   bannerEL.src = data?.media?.url || "/assets/images/filler.png"
   titleEl.textContent = data.title
-  descriptionEl.textContent = `${
-    data?.tags[0] ? data.tags[0] + " - " : ""
-  }${postDate}`
+  descriptionEl.textContent = postDate
   textBodyEl.innerHTML = newBody
   authorAvatarEl.src = data.author.avatar.url
   authorNameEl.textContent = data.author.name
@@ -60,7 +58,7 @@ async function populatePost(data) {
   authorTitleEl.setAttribute("title", data.author.email) // Set the email in the title attribute in case it overflows
   headtitleEl.textContent = data.title // Update title in head for SEO
 
-  if (auth) { // If user has auth, update href for edit button
+  if (auth && auth.name === data.author.name) { // If name in user-auth is the same as author > show edit button
     hrefEl.innerHTML = `Edit <i class="fa-regular fa-pen-to-square"></i>`
     hrefEl.href = `/post/edit.html?author=${data.author.name}&postId=${data.id}`
   } else hrefEl.remove()
