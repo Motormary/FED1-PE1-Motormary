@@ -71,11 +71,6 @@ select {
   line-height: inherit; */
 }
 
-select * {
-  background-color: transparent;
-  border: 1px solid var(--border);
-}
-
 /* Keeps label+input in columns */
 .input-container {
   display: flex;
