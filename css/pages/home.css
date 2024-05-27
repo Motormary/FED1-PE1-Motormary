@@ -117,9 +117,9 @@
   cursor: pointer;
 }
 
-.filter-select {
+/* .filter-select {
   min-width: fit-content;
-}
+} */
 
 #clear-filters {
   visibility: hidden;
