@@ -57,9 +57,9 @@ main {
   width: max-content;
   padding: 0.5rem;
   background-color: #fff;
-  border: 1px solid #67676730;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  box-shadow: 1px 1px 1px #67676730;
+  box-shadow: 1px 1px 2px var(--secondary);
   font-size: 0.75rem;
   user-select: none;
   line-height: 1.25rem;
@@ -85,6 +85,7 @@ main {
   border: none;
   border-radius: 6px;
   font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
 }
 
