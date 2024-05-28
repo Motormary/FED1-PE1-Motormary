@@ -13,7 +13,6 @@
   --border: #67676730;
 }
 
-
 h1 {
   font-size: 3rem;
   font-weight: bold;
@@ -78,22 +77,22 @@ select {
 
 input:not(.search),
 textarea {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    box-shadow: none;
-    padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: none;
+  padding: 0.5rem;
 }
 
 input:not(.search) {
-    height: 1.75rem;
+  height: 1.75rem;
 }
 
 input:focus:not(.search),
 textarea:focus {
-    outline: none;
-    box-shadow: 0px 0px 4px #9eaeff;
-    border:1px solid;
-    border-color: var(--border);
+  outline: none;
+  box-shadow: 0px 0px 4px #9eaeff;
+  border: 1px solid;
+  border-color: var(--border);
 }
 
 #toast {
@@ -147,8 +146,6 @@ textarea:focus {
   z-index: 10;
 }
 
-
-
 .tsModal {
   position: relative;
   display: flex;
@@ -162,7 +159,6 @@ textarea:focus {
   box-shadow: 0 0 6px #67676770;
   background-color: #fff;
 }
-
 
 .tsEscape {
   position: absolute;
@@ -198,6 +194,12 @@ textarea:focus {
   border-radius: 6px;
 }
 
+@media (max-width: 600px) {
+  .tsBtnContainer > button {
+    flex: 1;
+  }
+}
+
 .tsAccept {
   background-color: var(--button-primary);
   border: 1px solid transparent;
@@ -214,7 +216,7 @@ textarea:focus {
   border: solid 1px var(--border);
 }
 
-.tsCancel:hover, 
+.tsCancel:hover,
 .tsCancel:focus {
   color: black;
 }
@@ -222,7 +224,7 @@ textarea:focus {
 .tsAccept:hover,
 .tsCancel:hover,
 .tsAccept:focus,
-.tsCancel:focus  {
+.tsCancel:focus {
   box-shadow: 0 0 2px var(--secondary);
 }
 
