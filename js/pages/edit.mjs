@@ -4,6 +4,7 @@ import { createErrorPage } from "../functions/404.mjs"
 import deletePost from "../functions/delete-single-post.mjs"
 import getSinglePost from "../functions/get-single-post.mjs"
 import { postOrPatchPost } from "../functions/post-or-patch.mjs"
+import twoStepModal from "../functions/two-step-modal.mjs"
 
 const formEl = document.querySelector("form#edit")
 const titleEl = document.querySelector("input[name=title")
@@ -24,12 +25,35 @@ if (!auth) {
 
 // Listen for submit event
 formEl.addEventListener("submit", (e) => {
-  postOrPatchPost(e, "PUT", author, postId)
+  e.preventDefault()
+  // Open 2step modal
+  twoStepModal({
+    title: "Edit post",
+    body: "Are you sure you want to save these changes?",
+    btnText: "Save",
+    someFunction: async () => {
+      await postOrPatchPost(e, "PUT", author, postId)
+    }
+  })
+  
 })
 
 deleteBtn.addEventListener("click", (e) => {
   e.preventDefault()
-  handleDeletePost()
+  // Open 2 step modal
+  twoStepModal({
+    title: "Delete post",
+    body: "Are you sure you want to delete this post?",
+    btnText: "Delete",
+    someFunction: async () => {
+      const response = await deletePost(author, postId)
+      if (response) {
+        window.location.href = "/post/list.html" // Redirect back to post list if success
+      } else {
+        showToast("Something went wrong, try again or contact support")
+      }
+    }
+  })
 })
 
 backBtn.addEventListener("click", () => window.history.back())
@@ -51,13 +75,4 @@ function populateEditFields(data) {
   bodyEl.value = data.body
   mediaEl.value = data.media.url
   tagsEl.value = data.tags.toString().replaceAll(",", ", ") // Create space between the tags for readability
-}
-
-async function handleDeletePost() {
-  const response = await deletePost(author, postId)
-  if (response) {
-    window.location.href = "/post/list.html" // Redirect back to post list if success
-  } else {
-    showToast("Something went wrong, try again or contact support")
-  }
 }

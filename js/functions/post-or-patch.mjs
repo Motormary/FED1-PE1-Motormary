@@ -37,7 +37,11 @@ export async function postOrPatchPost(event, method, author, postId) {
         `/post/?author=${data.author.name}&postId=${data.id}`
       )
     } else {
-      handleErrors(responseData)
+      if (responseData.errors[0]?.path) { // If error has a path show errors on input field
+        handleErrors(responseData)
+      } else {
+        showToast(responseData.errors[0]?.message) // If no path, show error in toast
+      }
     }
   } catch (e) {
     showToast("Something went wrong, try again or contact support.")

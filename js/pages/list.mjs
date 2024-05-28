@@ -3,6 +3,7 @@ import { showToast } from "../components/toast.mjs"
 import createPostsToEdit from "../functions/create-posts-list.mjs"
 import deletePost from "../functions/delete-single-post.mjs"
 import { getAllPosts } from "../functions/get-all-posts.mjs"
+import twoStepModal from "../functions/two-step-modal.mjs"
 
 const searchEl = document.querySelector("input[type=search]")
 const allPostsEl = document.querySelector("div.all-posts-container")
@@ -22,8 +23,8 @@ searchEl.addEventListener("keyup", () => {
 // Get all posts of the logged in user
 async function getPostsForEdit() {
   const posts = await getAllPosts({
-    author: auth.name, 
-    page: page
+    author: auth.name,
+    page: page,
   })
   if (posts.data[0]?.id) {
     allPostsEl.innerHTML = "" // Reset html when searching
@@ -52,19 +53,23 @@ function filterPostsToEdit(data) {
   createPostsToEdit(filteredData)
 }
 
-// Create post elements
-
-
 // Handle delete post
 export function handleDeletePost(post, postContainer) {
-  const response = deletePost(post.author.name, post.id)
-  if (response) {
-    showToast("Post deleted")
-    postContainer.remove() // Remove post from html
-    checkPostsLength() // Check if it was the last post deleted
-  } else {
-    showToast("Something went wrong, try again or contact support")
-  }
+  twoStepModal({
+    title: "Delete post",
+    body: "Are you sure you want to delete this post?",
+    btnText: "Delete",
+    someFunction: async () => {
+      const response = deletePost(post.author.name, post.id)
+      if (response) {
+        showToast("Post deleted")
+        postContainer.remove() // Remove post from html
+        checkPostsLength() // Check if it was the last post deleted
+      } else {
+        showToast("Something went wrong, try again or contact support")
+      }
+    },
+  })
 }
 
 // Check if any posts in array
