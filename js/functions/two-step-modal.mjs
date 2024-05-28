@@ -35,11 +35,13 @@ export default async function twoStepModal({
     const closeBtn = document.createElement("button")
     closeBtn.classList.add("tsCancel")
     closeBtn.textContent = "Cancel"
+    closeBtn.setAttribute("tabindex", "1") // Accessability
     closeBtn.addEventListener("click", handleCloseModal)
 
     // --- Run provided function Button -----
     const acceptBtn = document.createElement("button")
     acceptBtn.classList.add("tsAccept")
+    acceptBtn.setAttribute("tabindex", "1") // Accessability
     acceptBtn.textContent = btnText
     acceptBtn.addEventListener("click", async () => {
       try {
@@ -55,7 +57,8 @@ export default async function twoStepModal({
     // ------ X icon - close button ---------
     const escapeBtn = document.createElement("button")
     escapeBtn.classList.add("tsEscape")
-    escapeBtn.innerHTML = `<i class="fa-solid fa-xmark"></i>`
+    escapeBtn.innerHTML = `<i class="fa-solid fa-xmark"></i>` // X - Icon
+    escapeBtn.setAttribute("tabindex", "1") // Accessability
     escapeBtn.addEventListener("click", handleCloseModal)
 
     btnContainer.append(closeBtn, acceptBtn)
